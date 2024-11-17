@@ -38,8 +38,7 @@ public class ModificarTicket1_controlador implements ActionListener {
 		v.tablaSeleccion.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if(e.getClickCount()==1) {
-					int filaSeleccionada = v.tablaSeleccion.rowAtPoint(e.getPoint());
-					
+
 					filaSeleccionada = v.tablaSeleccion.rowAtPoint(e.getPoint());
 					idTicketGestionado = Modelo.obtenerValorIdTicketSeleccionado(v.tablaSeleccion);
 					v.tablaTicket.setModel(ModeloMetodosBD.mostrarArticulosTicketEnTabla(idTicketGestionado, v.nombreColumnasTicket));

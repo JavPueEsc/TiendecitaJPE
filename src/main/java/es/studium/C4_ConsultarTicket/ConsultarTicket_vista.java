@@ -3,7 +3,10 @@ package es.studium.C4_ConsultarTicket;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.JTable;
+import javax.swing.JViewport;
+
 import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
@@ -16,11 +19,25 @@ public class ConsultarTicket_vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
-	public JTable tablaSeleccion;
+	//public JTable tablaSeleccion;
 	public JButton btnVolver;
-	public DefaultTableModel modeloTablaSeleccion;
-	private JTable tablaTicket;
-	public DefaultTableModel modeloTablaTicket;
+	//public DefaultTableModel modeloTablaSeleccion;
+	//private JTable tablaTicket;
+	//public DefaultTableModel modeloTablaTicket;
+	
+	public String[] nombreColumnasSeleccion = {"Núm. ticket", "Fecha", "Total (€)"};
+	public JTable tablaSeleccion = new JTable();
+	DefaultTableModel modeloTablaSeleccion = new DefaultTableModel(nombreColumnasSeleccion, 0);
+	JScrollPane scrollPaneSeleccion = new JScrollPane(tablaSeleccion);
+	JViewport vistaScrollpanelSeleccion = scrollPaneSeleccion.getViewport();
+	LineBorder borderSeleccion = new LineBorder(Color.white, 0);
+	
+	public String[] nombreColumnasTicket = {"Artículo", "Precio (€)", "Unidades", "Total línea (€)"};
+	public JTable tablaTicket = new JTable();
+	DefaultTableModel modeloTablaTicket = new DefaultTableModel(nombreColumnasTicket, 0);
+	JScrollPane scrollPaneTicket = new JScrollPane(tablaTicket);
+	JViewport vistaScrollpanelTicket = scrollPaneTicket.getViewport();
+	LineBorder borderTicket = new LineBorder(Color.white, 0);
 	
 	/**
 	 * Create the frame.
@@ -36,9 +53,15 @@ public class ConsultarTicket_vista extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		tablaSeleccion.setModel(modeloTablaSeleccion); 
+		scrollPaneSeleccion.setBorder(borderSeleccion);
+		scrollPaneSeleccion.setBounds(34, 53, 309, 167);
+		contentPane.add(scrollPaneSeleccion);
+		
+		/*JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(34, 53, 309, 167);
 		contentPane.add(scrollPane);
+		
 		
 		modeloTablaSeleccion = new DefaultTableModel(
 			new Object[][] {
@@ -56,7 +79,7 @@ public class ConsultarTicket_vista extends JFrame {
 		};
 		
 		tablaSeleccion = new JTable(modeloTablaSeleccion);
-		scrollPane.setViewportView(tablaSeleccion);
+		scrollPane.setViewportView(tablaSeleccion);*/
 		
 		JLabel lblNewLabel = new JLabel("Seleccione un ticket para consultarlo");
 		lblNewLabel.setForeground(new Color(128, 128, 255));
@@ -68,7 +91,11 @@ public class ConsultarTicket_vista extends JFrame {
 		btnVolver.setBounds(100, 231, 171, 23);
 		contentPane.add(btnVolver);
 		
-		JScrollPane scrollPane_ticket = new JScrollPane();
+		tablaTicket.setModel(modeloTablaTicket);
+		scrollPaneTicket.setBorder(borderTicket);
+		scrollPaneTicket.setBounds(370, 53, 370, 167);
+		contentPane.add(scrollPaneTicket);
+		/*JScrollPane scrollPane_ticket = new JScrollPane();
 		scrollPane_ticket.setBounds(370, 53, 370, 167);
 		contentPane.add(scrollPane_ticket);
 		
@@ -81,7 +108,7 @@ public class ConsultarTicket_vista extends JFrame {
 			}
 		);
 		tablaTicket = new JTable(modeloTablaTicket);
-		scrollPane_ticket.setViewportView(tablaTicket);
+		scrollPane_ticket.setViewportView(tablaTicket);*/
 		
 		JLabel lblNewLabel_1 = new JLabel("Contenido del ticket seleccionado");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
