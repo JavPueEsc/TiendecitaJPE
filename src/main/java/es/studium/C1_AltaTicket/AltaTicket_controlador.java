@@ -3,12 +3,14 @@ package es.studium.C1_AltaTicket;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
-
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.TableColumn;
 
 import es.studium.A_MenuPrincipal.MenuPrincipal_controlador;
 import es.studium.A_MenuPrincipal.MenuPrincipal_vista;
 import es.studium.Z_Modelos.Modelo;
+import es.studium.Z_Modelos.ModeloMetodosBD;
 
 public class AltaTicket_controlador implements ActionListener {
 
@@ -18,6 +20,10 @@ public class AltaTicket_controlador implements ActionListener {
 	public AltaTicket_controlador(AltaTicket_vista v, Modelo m) {
 		vista = v;
 		modelo = m;
+		
+		v.tablaArticulos.setModel(ModeloMetodosBD.mostrarArticulosEnTabla(v.nombreColumnas));
+		m.ajustarAnchoColumnas(v.tablaArticulos);
+		m.ajustarAnchoColumnas(v.tablaTickets);
 		
 		v.addWindowListener(new WindowAdapter() {
 			@Override
@@ -73,11 +79,12 @@ public class AltaTicket_controlador implements ActionListener {
 				JOptionPane.showMessageDialog(vista, "La fecha debe tener el formato dd/mm/aaaa");
 			}
 			else {
+				ModeloMetodosBD.crearTicket(vista.txtFecha.getText(), vista.txtTotal.getText(), vista.tablaTickets);
 				JOptionPane.showMessageDialog(vista.contentPane, "El ticket se ha creado correctamente.");
 				modelo.limpiarCamposYTablas(vista.modeloTablaTicket, vista.txtTotal, vista.txtFecha);
 			}
 		}
 		
 	}
-
+	
 }

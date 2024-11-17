@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import es.studium.B1_AltaArticulo.AltaArticulo_vista;
 import es.studium.C1_AltaTicket.AltaTicket_vista;
@@ -57,21 +58,21 @@ public class Modelo {
 
 			String cadenaContenido = contenido.toString();
 			String[] ArrayContenido = cadenaContenido.split(" ");
-			articuloAAnadir = ArrayContenido[0];
+			articuloAAnadir = ArrayContenido[1];
 
 			int numUnidades = mostrarDialogo(vista, articuloAAnadir);
 
 			if (!(numUnidades <= 0)) {
 
-				BigDecimal precio = new BigDecimal(ArrayContenido[1]);
+				BigDecimal precio = new BigDecimal(ArrayContenido[2]);
 				BigDecimal unidades = new BigDecimal(numUnidades);
 				BigDecimal totalLinea = precio.multiply(unidades);
 
-				String[] nuevaLineaTabla = { ArrayContenido[0], ArrayContenido[1], numUnidades + "",
+				String[] nuevaLineaTabla = { ArrayContenido[0], ArrayContenido[1], ArrayContenido[2], numUnidades + "",
 						totalLinea.setScale(2, RoundingMode.HALF_UP) + "" };
 				modeloTablaTicket.addRow(nuevaLineaTabla);
 
-				cuadroTextoTotal.setText(sumarColumnaTotalesLinea(3, modeloTablaTicket) + "");
+				cuadroTextoTotal.setText(sumarColumnaTotalesLinea(4, modeloTablaTicket) + "");
 
 			} else {
 				JOptionPane.showMessageDialog(null, "La cantidad mínima a añadir es una unidad");
@@ -109,7 +110,7 @@ public class Modelo {
 						totalLinea.setScale(2, RoundingMode.HALF_UP) + "" };
 				modeloTablaTicket.addRow(nuevaLineaTabla);
 
-				cuadroTextoTotal.setText(sumarColumnaTotalesLinea(3, modeloTablaTicket) + "");
+				cuadroTextoTotal.setText(sumarColumnaTotalesLinea(4, modeloTablaTicket) + "");
 
 			} else {
 				JOptionPane.showMessageDialog(null, "La cantidad mínima a añadir es una unidad");
@@ -169,7 +170,7 @@ public class Modelo {
 			if (respuesta == JOptionPane.YES_OPTION) {
 				DefaultTableModel model = (DefaultTableModel) tablaSeleccion.getModel();
 				ModeloMetodosBD.eliminarArticulo(idEntidadAEliminar);
-				//model.removeRow(filaSeleccionada);
+				// model.removeRow(filaSeleccionada);
 				JOptionPane.showMessageDialog(null,
 						"El " + entidad + ": '" + entidadAEliminar + "' ha sido eliminado.");
 			} else if (respuesta == JOptionPane.NO_OPTION) {
@@ -343,23 +344,70 @@ public class Modelo {
 			System.out.println("Fila seleccionada fuera de rango.");
 		}
 	}
-	
-public static boolean esFechaValida(String fecha) {
-        
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        try {
-            
-            LocalDate fechaParseada = LocalDate.parse(fecha, formato);
-            return true; 
-        } catch (DateTimeParseException e) {
-            return false; 
-        }
-    }
 
-public ImageIcon escalarImagen(ImageIcon icono, int ancho, int alto) {
-    Image imagenOriginal = icono.getImage();
-    Image imagenEscalada = imagenOriginal.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH); // Escalar suavemente
-    return new ImageIcon(imagenEscalada); // Devolver la imagen escalada como ImageIcon
-}
+	public static boolean esFechaValida(String fecha) {
+
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		try {
+
+			LocalDate fechaParseada = LocalDate.parse(fecha, formato);
+			return true;
+		} catch (DateTimeParseException e) {
+			return false;
+		}
+	}
+
+	public ImageIcon escalarImagen(ImageIcon icono, int ancho, int alto) {
+		Image imagenOriginal = icono.getImage();
+		Image imagenEscalada = imagenOriginal.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH); // Escalar suavemente
+		return new ImageIcon(imagenEscalada); // Devolver la imagen escalada como ImageIcon
+	}
+
+	public void ajustarAnchoColumnas(JTable tabla) {
+		for (int columna = 0; columna < tabla.getColumnCount(); columna++) {
+
+			String cabecera = tabla.getColumnName(columna);
+			int maxLongitud = cabecera.length();
+
+			for (int fila = 0; fila < tabla.getRowCount(); fila++) {
+				Object valor = tabla.getValueAt(fila, columna);
+				if (valor != null) {
+					maxLongitud = Math.max(maxLongitud, valor.toString().length());
+				}
+			}
+
+			TableColumn columnaTabla = tabla.getColumnModel().getColumn(columna);
+			columnaTabla.setPreferredWidth(maxLongitud * 10);
+		}
+	}
+
+	public static String europeoMysql(String fecha) {
+
+		String fechaTransformada = "";
+		String[] temporal = fecha.split("/");
+		fechaTransformada = temporal[2] + "-" + temporal[1] + "-" + temporal[0];
+		return (fechaTransformada);
+	}
+
+	public static String mysqlEuropeo(String fecha) {
+		String fechaTransformada = "";
+		String[] temporal = fecha.split("-");
+		fechaTransformada = temporal[2] + "/" + temporal[1] + "/" + temporal[0];
+		// recibe 2024-03-20
+		// devuelve 20/03/2024
+		return (fechaTransformada);
+	}
+	
+	public static String[] obtenerValoresColumna(JTable tabla, int numColumna) {
+	    int numFilas = tabla.getRowCount();
+	    String[] valores = new String[numFilas]; // Crear un array del tamaño del número de filas
+
+	    for (int i = 0; i < numFilas; i++) {
+	        Object valor = tabla.getValueAt(i, numColumna); // Obtener el valor de la columna especificada
+	        valores[i] = valor != null ? valor.toString() : null; // Convertir a String y manejar valores nulos
+	    }
+
+	    return valores; // Devolver el array
+	}
 
 }

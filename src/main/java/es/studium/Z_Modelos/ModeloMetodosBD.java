@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class ModeloMetodosBD {
@@ -144,6 +145,62 @@ public class ModeloMetodosBD {
 		finally {
 			GestorConexiones.cerrarRecursosPst(conexion, pst);
 		}
+	}
+	
+	public static void crearTicket(String fecha, String precioTotal, JTable tabla) {
+		int idTicket = 0;
+		Connection conexion = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try {
+			conexion = GestorConexiones.getMySQL_Connection("tiendecitajpe");
+			String ins = "INSERT INTO TICKETS (FECHATICKET,TOTALTICKET) VALUES (?,?)";
+			pst = conexion.prepareStatement(ins);
+			
+			pst.setString(1, Modelo.europeoMysql(fecha));
+		    pst.setFloat(2, Float.parseFloat(precioTotal));
+		    
+		    pst.executeUpdate();
+			pst.clearParameters();
+			
+			String consulta = "SELECT IDTICKET FROM TICKETS WHERE FECHATICKET = ? AND TOTALTICKET = ? "
+					+ "ORDER BY IDTICKET DESC LIMIT 1;";
+			pst = conexion.prepareStatement(consulta);
+			pst.setString(1, Modelo.europeoMysql(fecha));
+		    pst.setFloat(2, Float.parseFloat(precioTotal));
+		    
+		    rs = pst.executeQuery();
+		    
+		    if (rs.next()) {
+	            idTicket = rs.getInt("IDTICKET");
+	        }
+		    pst.clearParameters();
+		    
+		    String[] articulosdelTicket = Modelo.obtenerValoresColumna(tabla, 0);
+		    String[] cantidadesArticulosdelTicket = Modelo.obtenerValoresColumna(tabla, 3);
+		    
+		    for(int i=0; i<articulosdelTicket.length;i++) {
+		    	String ins2 = "INSERT INTO PERTENENCIAS (CANTIDADARTICULOTICKET,IDARTICULOFK,IDTICKETFK) VALUES (?,?,?)";
+		    	pst = conexion.prepareStatement(ins2);
+		    	
+		    	pst.setInt(1, Integer.parseInt(cantidadesArticulosdelTicket[i]));
+		    	pst.setInt(2, Integer.parseInt(articulosdelTicket[i]));
+		    	pst.setInt(3, idTicket);
+		    	
+		    	pst.executeUpdate();
+				pst.clearParameters();
+		    }
+		    
+		}
+		catch (SQLException sqle) {
+
+			System.out.println("Error de SQL " + sqle.getMessage());
+		}
+		finally {
+			GestorConexiones.cerrarRecursosPst(conexion, pst, rs);
+		}
+		System.err.println("id asignado al ticket"+idTicket);
 	}
 	
 }
