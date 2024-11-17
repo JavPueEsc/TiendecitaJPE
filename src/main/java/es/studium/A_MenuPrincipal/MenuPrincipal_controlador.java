@@ -26,13 +26,6 @@ public class MenuPrincipal_controlador implements ActionListener{
 	MenuPrincipal_vista vista;
 	Modelo modelo;
 	
-	String[] ticket1 = {"1","20/10/2024","8.40","Manzana","0.20","2","0.40","Detergente","2.00","2","8.00"};
-	String[] ticket2 = {"2","21/10/2024","9.50","Pastel","1.00","5","5.00","Pizza","1.50","3","4.50"};
-	String[] ticket3 = {"3","22/10/2024","7.90","Pizza","1.50","3","4.50","Manzana","0.20","7","1.40","Manzana","0.20","10","1.40"};
-	String[] ticket4 = {"4","23/10/2024","45.00","Detergente","2.00","20","40.00","Pastel","1.00","5","5.00"};
-	
-	String [][] tickets = {ticket1,ticket2,ticket3,ticket4};
-	
 	public MenuPrincipal_controlador(MenuPrincipal_vista v, Modelo m) {
 		vista = v;
 		modelo = m;
@@ -99,16 +92,16 @@ public class MenuPrincipal_controlador implements ActionListener{
 		}
 		
 		if(e.getSource().equals(vista.mnuiEliminarTicket)) {
-			new EliminarTicket_controlador(new EliminarTicket_vista(), new Modelo(), tickets);
+			new EliminarTicket_controlador(new EliminarTicket_vista(), new Modelo());
 			vista.setVisible(false);
 		}
 		
 		if(e.getSource().equals(vista.mnuiModificarTicket)) {
-			new ModificarTicket1_controlador(new ModificarTicket1_vista(), new Modelo(), tickets);
+			new ModificarTicket1_controlador(new ModificarTicket1_vista(), new Modelo());
 			vista.setVisible(false);
 		}
 		if(e.getSource().equals(vista.mnuiConsultarTicket)) {
-			new ConsultarTicket_controlador(new ConsultarTicket_vista(), new Modelo(), tickets);
+			new ConsultarTicket_controlador(new ConsultarTicket_vista(), new Modelo());
 			vista.setVisible(false);
 		}
 		

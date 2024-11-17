@@ -30,8 +30,6 @@ public class AltaTicket_vista extends JFrame {
 	public JButton btnLimpiar;
 	public JButton btnVolver;
 	public JTable tablaTickets;
-	//public JScrollPane scrollPaneArticulos;
-	//public JTable tablaArticulos;
 	public JButton btnAdd;
 	public JButton btnQuitar;
 	public DefaultTableModel modeloTablaTicket;
@@ -49,7 +47,6 @@ public class AltaTicket_vista extends JFrame {
 	public AltaTicket_vista() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\dekad\\Desktop\\GrupoStudium\\3. Segundo DAM\\4. Desarrollo de interfaces\\workspace DI\\DIT2_PracticaT2\\imagenes\\Icono_Frame.png"));
 		setTitle("Crear Ticket");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -119,7 +116,6 @@ public class AltaTicket_vista extends JFrame {
 		scrollPaneTickets.setViewportView(tablaTickets);
 		
 		//tabla artículos
-		//vistaScrollpanel.setBackground(Color.white); 
 		scrollPane.setBorder(border);
 		scrollPane.setBounds(34, 93, 232, 86);
 		contentPane.add(scrollPane);

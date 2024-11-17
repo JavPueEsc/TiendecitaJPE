@@ -132,7 +132,7 @@ public class Modelo {
 		}
 
 		for (int i = 0; i < numFilas; i++) {
-			Object valor = modeloTablaTicket.getValueAt(i, 3);
+			Object valor = modeloTablaTicket.getValueAt(i, 4);
 
 			if (valor != null) {
 				try {
@@ -444,6 +444,81 @@ public class Modelo {
 	        return tabla.getModel().getValueAt(filaSeleccionada, 0).toString(); 
 	    }
 	    return null; 
+	}
+	
+	public DefaultTableModel addArticuloActualizarTicket(ModificarTicket2_vista vista, int filaSeleccionada, JTable tablaArticulos,
+			DefaultTableModel modeloTablaTicket, JTextField cuadroTextoTotal) {
+		String articuloAAnadir = "";
+
+		if (filaSeleccionada != -1) {
+			StringBuilder contenido = new StringBuilder();
+
+			for (int col = 0; col < tablaArticulos.getColumnCount(); col++) {
+				Object valor = tablaArticulos.getValueAt(filaSeleccionada, col);
+				contenido.append(valor).append(" "); //
+			}
+
+			String cadenaContenido = contenido.toString();
+			String[] ArrayContenido = cadenaContenido.split(" ");
+			articuloAAnadir = ArrayContenido[1];
+
+			int numUnidades = mostrarDialogoActualizarTickets(vista, articuloAAnadir);
+
+			if (!(numUnidades <= 0)) {
+
+				BigDecimal precio = new BigDecimal(ArrayContenido[2]);
+				BigDecimal unidades = new BigDecimal(numUnidades);
+				BigDecimal totalLinea = precio.multiply(unidades);
+
+				String[] nuevaLineaTabla = { ArrayContenido[0], ArrayContenido[1], ArrayContenido[2], numUnidades + "",
+						totalLinea.setScale(2, RoundingMode.HALF_UP) + "" };
+				modeloTablaTicket.addRow(nuevaLineaTabla);
+
+				cuadroTextoTotal.setText(sumarColumnaTotalesLinea(4, modeloTablaTicket) + "");
+
+			} else {
+				JOptionPane.showMessageDialog(null, "La cantidad mínima a añadir es una unidad");
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Debe escoger un artículo de la lista.");
+		}
+		
+		return modeloTablaTicket;
+	}
+
+	public int mostrarDialogoActualizarTickets(ModificarTicket2_vista vista, String articulo) {
+		final int[] numUnidades = { 1 };
+
+		JDialog dialogo = new JDialog(vista, "Introduzca una cantidad", true);
+		dialogo.setLayout(new FlowLayout());
+		dialogo.setSize(380, 100);
+
+		JLabel lblMensajeUnidades = new JLabel("¿Cuantas unidades de " + articulo + " desea incuir en el ticket?");
+		dialogo.add(lblMensajeUnidades);
+
+		JTextField txtUnidades = new JTextField(10);
+		dialogo.add(txtUnidades);
+
+		JButton btnAceptar = new JButton("Aceptar");
+		dialogo.add(btnAceptar);
+
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String numUnidadesTexto = txtUnidades.getText();
+				try {
+					if (!numUnidadesTexto.isEmpty()) {
+						numUnidades[0] = Integer.parseInt(numUnidadesTexto);
+					}
+					dialogo.dispose();
+				} catch (NumberFormatException ex) {
+					JOptionPane.showMessageDialog(vista, "Por favor, introduzca un número válido.");
+				}
+			}
+		});
+
+		dialogo.setVisible(true);
+
+		return numUnidades[0];
 	}
 
 }

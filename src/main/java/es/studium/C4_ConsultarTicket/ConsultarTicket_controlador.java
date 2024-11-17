@@ -25,7 +25,7 @@ public class ConsultarTicket_controlador implements ActionListener {
 	
 	String [][] tickets = {ticket1,ticket2,ticket3,ticket4};
 
-	public ConsultarTicket_controlador(ConsultarTicket_vista v, Modelo m, String [][] tickets ) {
+	public ConsultarTicket_controlador(ConsultarTicket_vista v, Modelo m) {
 		vista = v;
 		modelo = m;
 

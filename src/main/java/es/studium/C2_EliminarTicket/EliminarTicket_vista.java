@@ -48,8 +48,7 @@ public class EliminarTicket_vista extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		tablaSeleccion.setModel(modeloTablaSeleccion);
-		//vistaScrollpanelSeleccion.setBackground(Color.white); 
+		tablaSeleccion.setModel(modeloTablaSeleccion); 
 		scrollPaneSeleccion.setBorder(borderSeleccion);
 		scrollPaneSeleccion.setBounds(34, 53, 309, 167);
 		contentPane.add(scrollPaneSeleccion);
@@ -71,7 +70,6 @@ public class EliminarTicket_vista extends JFrame {
 		contentPane.add(btnEliminar);
 		
 		tablaTicket.setModel(modeloTablaTicket);
-		//vistaScrollpanelTicket.setBackground(Color.white); 
 		scrollPaneTicket.setBorder(borderTicket);
 		scrollPaneTicket.setBounds(370, 53, 370, 167);
 		contentPane.add(scrollPaneTicket);

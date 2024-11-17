@@ -18,7 +18,7 @@ public class EliminarTicket_controlador implements ActionListener {
 	String idTicketGestionado;
 	int filaSeleccionada;
 	
-	public EliminarTicket_controlador(EliminarTicket_vista v, Modelo m, String [][] tickets ) {
+	public EliminarTicket_controlador(EliminarTicket_vista v, Modelo m) {
 		vista = v;
 		modelo = m;
 		

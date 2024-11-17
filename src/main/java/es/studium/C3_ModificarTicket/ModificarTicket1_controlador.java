@@ -12,25 +12,20 @@ import javax.swing.table.DefaultTableModel;
 import es.studium.A_MenuPrincipal.MenuPrincipal_controlador;
 import es.studium.A_MenuPrincipal.MenuPrincipal_vista;
 import es.studium.Z_Modelos.Modelo;
+import es.studium.Z_Modelos.ModeloMetodosBD;
 
 public class ModificarTicket1_controlador implements ActionListener {
 
 	ModificarTicket1_vista vista;
 	Modelo modelo;
+	String idTicketGestionado;
+	int filaSeleccionada;
 	
-	String[] ticket1 = {"1","20/10/2024","8.40","Manzana","0.20","2","0.40","Detergente","2.00","2","8.00"};
-	String[] ticket2 = {"2","21/10/2024","9.50","Pastel","1.00","5","5.00","Pizza","1.50","3","4.50"};
-	String[] ticket3 = {"3","22/10/2024","7.90","Pizza","1.50","3","4.50","Manzana","0.20","7","1.40","Manzana","0.20","10","1.40"};
-	String[] ticket4 = {"4","23/10/2024","45.00","Detergente","2.00","20","40.00","Pastel","1.00","5","5.00"};
-	
-	String [][] tickets = {ticket1,ticket2,ticket3,ticket4};
-	
-	String numTicketSeleccionado;
-	String valorFechaSeleccionada;
-	
-	public ModificarTicket1_controlador(ModificarTicket1_vista v, Modelo m, String [][] tickets) {
+	public ModificarTicket1_controlador(ModificarTicket1_vista v, Modelo m) {
 		vista = v;
 		modelo = m;
+		
+		v.tablaSeleccion.setModel(ModeloMetodosBD.mostrarTicketEnTabla(v.nombreColumnasSeleccion));
 
 		v.addWindowListener(new WindowAdapter() {
 			@Override
@@ -44,16 +39,16 @@ public class ModificarTicket1_controlador implements ActionListener {
 			public void mouseClicked(MouseEvent e) {
 				if(e.getClickCount()==1) {
 					int filaSeleccionada = v.tablaSeleccion.rowAtPoint(e.getPoint());
-					numTicketSeleccionado = vista.tablaSeleccion.getValueAt(filaSeleccionada, 0).toString();
-					valorFechaSeleccionada = vista.tablaSeleccion.getValueAt(filaSeleccionada, 1).toString();
 					
-					
-					m.mostrarContenidoTicket(filaSeleccionada, v.modeloTablaTicket,tickets[0], tickets[1], tickets[2], tickets[3]);
+					filaSeleccionada = v.tablaSeleccion.rowAtPoint(e.getPoint());
+					idTicketGestionado = Modelo.obtenerValorIdTicketSeleccionado(v.tablaSeleccion);
+					v.tablaTicket.setModel(ModeloMetodosBD.mostrarArticulosTicketEnTabla(idTicketGestionado, v.nombreColumnasTicket));
+					filaSeleccionada = v.tablaSeleccion.rowAtPoint(e.getPoint());
 				}
 				
 				if (e.getClickCount() == 2) {
 					
-					new ModificarTicket2_controlador (new ModificarTicket2_vista(), new Modelo(),v.modeloTablaTicket, numTicketSeleccionado, valorFechaSeleccionada);
+					new ModificarTicket2_controlador (new ModificarTicket2_vista(), new Modelo(),idTicketGestionado);
 					v.setVisible(false);
 				}
 			}
@@ -62,8 +57,6 @@ public class ModificarTicket1_controlador implements ActionListener {
 		v.btnVolver.addActionListener(this);
 		v.btnModificar.addActionListener(this);
 		
-		m.mostrarTicket(vista.modeloTablaSeleccion,tickets[0], tickets[1], tickets[2], tickets[3]);
-
 	}
 
 	@Override
@@ -82,7 +75,7 @@ public class ModificarTicket1_controlador implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Debe seleccionar un ticket.");
 			}
 			else {
-				new ModificarTicket2_controlador (new ModificarTicket2_vista(), new Modelo(),vista.modeloTablaTicket, numTicketSeleccionado, valorFechaSeleccionada);
+				new ModificarTicket2_controlador (new ModificarTicket2_vista(), new Modelo(),idTicketGestionado);
 				vista.setVisible(false);			}
 		}
 	}
