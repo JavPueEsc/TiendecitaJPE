@@ -36,7 +36,7 @@ public class EliminarArticulo_controlador implements ActionListener {
 					
 					int filaSeleccionada = v.tabla.rowAtPoint(e.getPoint());
 					
-					m.gestionBorrado(filaSeleccionada,"artículo", v.tabla);
+					m.gestionBorradoArticulo(filaSeleccionada,"artículo", v.tabla);
 					v.tabla.setModel(ModeloMetodosBD.mostrarArticulosEnTabla(v.nombreColumnas));
 					
 				}
@@ -64,7 +64,7 @@ public class EliminarArticulo_controlador implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Debe seleccionar un artículo.");
 			}
 			else {
-				modelo.gestionBorrado(filaSeleccionada,"artículo", vista.tabla);
+				modelo.gestionBorradoArticulo(filaSeleccionada,"artículo", vista.tabla);
 				vista.tabla.setModel(ModeloMetodosBD.mostrarArticulosEnTabla(vista.nombreColumnas));
 			}
 		}

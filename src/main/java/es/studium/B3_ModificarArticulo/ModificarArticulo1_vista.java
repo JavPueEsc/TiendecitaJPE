@@ -46,7 +46,7 @@ public class ModificarArticulo1_vista extends JFrame {
 		contentPane.setLayout(null);
 		
 		tabla.setModel(modeloTabla);
-		vistaScrollpanel.setBackground(Color.white); 
+		//vistaScrollpanel.setBackground(Color.white); 
 		scrollPane.setBorder(border);
 		scrollPane.setBounds(23, 53, 285, 167);
 		contentPane.add(scrollPane);

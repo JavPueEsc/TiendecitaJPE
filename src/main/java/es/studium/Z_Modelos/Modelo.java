@@ -147,7 +147,7 @@ public class Modelo {
 		cuadroTextoTotal.setText(sumaTotal.setScale(2, RoundingMode.HALF_UP).toString());
 	}
 
-	public void gestionBorrado(int filaSeleccionada, String entidad, JTable tablaSeleccion) {
+	public void gestionBorradoArticulo(int filaSeleccionada, String entidad, JTable tablaSeleccion) {
 
 		if (filaSeleccionada != -1) {
 			StringBuilder contenido = new StringBuilder();
@@ -179,6 +179,40 @@ public class Modelo {
 		}
 	}
 
+	public void gestionBorradoTicket(int filaSeleccionada, String entidad, JTable tablaSeleccion) {
+
+		if (filaSeleccionada != -1) {
+			StringBuilder contenido = new StringBuilder();
+
+			for (int col = 0; col < tablaSeleccion.getColumnCount(); col++) {
+				Object valor = tablaSeleccion.getValueAt(filaSeleccionada, col);
+				contenido.append(valor).append(" "); //
+			}
+
+			String cadenaContenido = contenido.toString();
+			String[] ArrayContenido = cadenaContenido.split(" ");
+			String idEntidadAEliminar = ArrayContenido[0];
+			String fechaEntidadAEliminar = ArrayContenido[1];
+			String importeEntidadAEliminar = ArrayContenido[2];
+			// System.out.println(ArticuloAEliminar);
+
+			int respuesta = JOptionPane.showConfirmDialog(null,
+					"¿Está seguro de que desea eliminar el " + entidad + " '" + idEntidadAEliminar + 
+					"' con fecha "+fechaEntidadAEliminar+" e importe de "+importeEntidadAEliminar+" €?", "Advertencia",
+					JOptionPane.YES_NO_OPTION);
+
+			if (respuesta == JOptionPane.YES_OPTION) {
+				DefaultTableModel model = (DefaultTableModel) tablaSeleccion.getModel();
+				ModeloMetodosBD.eliminarTicket(idEntidadAEliminar);
+				// model.removeRow(filaSeleccionada);
+				JOptionPane.showMessageDialog(null,
+						"El " + entidad + ": '" + idEntidadAEliminar + "' ha sido eliminado.");
+			} else if (respuesta == JOptionPane.NO_OPTION) {
+				JOptionPane.showMessageDialog(null, "Operación cancelada");
+			}
+		}
+	}
+	
 	public int mostrarDialogo(AltaTicket_vista vista, String articulo) {
 		final int[] numUnidades = { 1 };
 
@@ -294,12 +328,6 @@ public class Modelo {
 		return suma;
 	}
 
-	public void mostrarTicket(DefaultTableModel modeloTablaSeleccion, String[]... tickets) {
-		for (String[] ticket : tickets) {
-			String[] linea = { ticket[0], ticket[1], ticket[2] };
-			modeloTablaSeleccion.addRow(linea);
-		}
-	}
 
 	public void mostrarContenidoTicket(int filaSeleccionada, DefaultTableModel modeloTablaTicket, String[]... tickets) {
 
@@ -408,6 +436,14 @@ public class Modelo {
 	    }
 
 	    return valores; // Devolver el array
+	}
+	
+	public static String obtenerValorIdTicketSeleccionado(JTable tabla) {
+	    int filaSeleccionada = tabla.getSelectedRow(); 
+	    if (filaSeleccionada != -1) { 
+	        return tabla.getModel().getValueAt(filaSeleccionada, 0).toString(); 
+	    }
+	    return null; 
 	}
 
 }

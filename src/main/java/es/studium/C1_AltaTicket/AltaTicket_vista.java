@@ -119,7 +119,7 @@ public class AltaTicket_vista extends JFrame {
 		scrollPaneTickets.setViewportView(tablaTickets);
 		
 		//tabla artículos
-		vistaScrollpanel.setBackground(Color.white); 
+		//vistaScrollpanel.setBackground(Color.white); 
 		scrollPane.setBorder(border);
 		scrollPane.setBounds(34, 93, 232, 86);
 		contentPane.add(scrollPane);
