@@ -6,15 +6,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-
-import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-
-import javax.swing.JButton;
 import java.awt.Color;
 
 public class MenuPrincipal_vista extends JFrame {

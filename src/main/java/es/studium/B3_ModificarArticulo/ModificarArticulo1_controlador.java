@@ -5,10 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
-
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-
 import es.studium.A_MenuPrincipal.MenuPrincipal_controlador;
 import es.studium.A_MenuPrincipal.MenuPrincipal_vista;
 import es.studium.Z_Modelos.Modelo;

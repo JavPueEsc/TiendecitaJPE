@@ -3,11 +3,16 @@ package es.studium.B4_ConsultarArticulo;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.JTable;
+import javax.swing.JViewport;
+
 import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 
@@ -15,9 +20,15 @@ public class ConsultarArticulo1_vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
-	public JTable tabla;
 	public JButton btnVolver;
 	public JButton btnSeleccionar;
+	
+	public String[] nombreColumnas = {"Id", "Descripción", "Precio (€)","Cantidad"};
+	public JTable tabla = new JTable();
+	DefaultTableModel modeloTabla = new DefaultTableModel(nombreColumnas, 0);
+	JScrollPane scrollPane = new JScrollPane(tabla);
+	JViewport vistaScrollpanel = scrollPane.getViewport();
+	LineBorder border = new LineBorder(Color.white, 0);
 
 	
 	/**
@@ -34,47 +45,11 @@ public class ConsultarArticulo1_vista extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(34, 53, 264, 167);
+		tabla.setModel(modeloTabla);
+		vistaScrollpanel.setBackground(Color.white); 
+		scrollPane.setBorder(border);
+		scrollPane.setBounds(23, 53, 285, 167);
 		contentPane.add(scrollPane);
-		
-		tabla = new JTable();
-		scrollPane.setViewportView(tabla);
-		tabla.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Pastel", "1.00", "20"},
-				{"Manzana", "0.20", "50"},
-				{"Detergente", "2.00", "15"},
-				{"Pizza", "1.50", "15"},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"Descripci\u00F3n", "Precio (\u20AC)", "Cantidad"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
 		
 		JLabel lblNewLabel = new JLabel("Seleccione un artículo");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));

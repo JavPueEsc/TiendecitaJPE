@@ -5,13 +5,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
-
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-
 import es.studium.A_MenuPrincipal.MenuPrincipal_controlador;
 import es.studium.A_MenuPrincipal.MenuPrincipal_vista;
 import es.studium.Z_Modelos.Modelo;
+import es.studium.Z_Modelos.ModeloMetodosBD;
 
 public class ConsultarArticulo1_controlador implements ActionListener {
 
@@ -21,6 +19,8 @@ public class ConsultarArticulo1_controlador implements ActionListener {
 	public ConsultarArticulo1_controlador(ConsultarArticulo1_vista v, Modelo m) {
 		vista = v;
 		modelo = m;
+		
+		v.tabla.setModel(ModeloMetodosBD.mostrarArticulosEnTabla(v.nombreColumnas));
 
 		v.addWindowListener(new WindowAdapter() {
 			@Override

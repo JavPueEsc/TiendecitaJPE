@@ -3,11 +3,6 @@ package es.studium.B4_ConsultarArticulo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
-
-import javax.swing.JOptionPane;
-
-import es.studium.A_MenuPrincipal.MenuPrincipal_controlador;
-import es.studium.A_MenuPrincipal.MenuPrincipal_vista;
 import es.studium.Z_Modelos.Modelo;
 
 public class ConsultarArticulo2_controlador implements ActionListener {
@@ -35,9 +30,9 @@ public class ConsultarArticulo2_controlador implements ActionListener {
 		v.txtPrecio.setEditable(false);
 		v.txtCantidad.setEditable(false);
 		
-		v.txtDescripcion.setText(c[0]);
-		v.txtPrecio.setText(c[1]);
-		v.txtCantidad.setText(c[2]);
+		v.txtDescripcion.setText(c[1]);
+		v.txtPrecio.setText(c[2]);
+		v.txtCantidad.setText(c[3]);
 		
 		v.btnVolver.addActionListener(this);
 	}
