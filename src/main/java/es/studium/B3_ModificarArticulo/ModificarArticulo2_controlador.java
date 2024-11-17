@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import es.studium.A_MenuPrincipal.MenuPrincipal_controlador;
 import es.studium.A_MenuPrincipal.MenuPrincipal_vista;
 import es.studium.Z_Modelos.Modelo;
+import es.studium.Z_Modelos.ModeloMetodosBD;
 
 public class ModificarArticulo2_controlador implements ActionListener {
 
@@ -29,9 +30,9 @@ public class ModificarArticulo2_controlador implements ActionListener {
 				}
 			}
 		);
-		v.txtDescripcion.setText(c[0]);
-		v.txtPrecio.setText(c[1]);
-		v.txtCantidad.setText(c[2]);
+		v.txtDescripcion.setText(c[1]);
+		v.txtPrecio.setText(c[2]);
+		v.txtCantidad.setText(c[3]);
 		
 		v.btnModificarArticulo.addActionListener(this);
 		v.btnLimpiar.addActionListener(this);
@@ -61,6 +62,8 @@ public class ModificarArticulo2_controlador implements ActionListener {
 				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Cantidad' es obligatorio.");
 			}
 			else {
+				ModeloMetodosBD.actualizarArticulo(contenido[0], vista.txtDescripcion.getText(), vista.txtPrecio.getText(), 
+						vista.txtCantidad.getText());
 				JOptionPane.showMessageDialog(vista.contentPane, "El artículo se ha modificado correctamente.");
 				new ModificarArticulo1_controlador(new ModificarArticulo1_vista(), new Modelo());
 				vista.setVisible(false);

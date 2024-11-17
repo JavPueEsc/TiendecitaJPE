@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import es.studium.A_MenuPrincipal.MenuPrincipal_controlador;
 import es.studium.A_MenuPrincipal.MenuPrincipal_vista;
 import es.studium.Z_Modelos.Modelo;
+import es.studium.Z_Modelos.ModeloMetodosBD;
 
 public class ModificarArticulo1_controlador implements ActionListener {
 
@@ -21,6 +22,8 @@ public class ModificarArticulo1_controlador implements ActionListener {
 	public ModificarArticulo1_controlador(ModificarArticulo1_vista v, Modelo m) {
 		vista = v;
 		modelo = m;
+		
+		v.tabla.setModel(ModeloMetodosBD.mostrarArticulosEnTabla(v.nombreColumnas));
 
 		v.addWindowListener(new WindowAdapter() {
 			@Override

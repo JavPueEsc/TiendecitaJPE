@@ -119,4 +119,31 @@ public class ModeloMetodosBD {
 
 	}
 	
+	public static void actualizarArticulo(String idArticulo,String descripcion, String precio, String cantidad) {
+		Connection conexion = null;
+		PreparedStatement pst = null;
+		
+		try {
+			conexion = GestorConexiones.getMySQL_Connection("tiendecitajpe");
+			String ins = "UPDATE ARTICULOS SET DESCRIPCIONARTICULO = ?, PRECIOARTICULO = ?,"
+					+ "CANTIDADARTICULO = ? WHERE IDARTICULO = ?";
+			pst = conexion.prepareStatement(ins);
+			pst.setString(1, descripcion);
+			pst.setFloat(2, Float.parseFloat(precio));
+			pst.setInt(3, Integer.parseInt(cantidad));
+			pst.setInt(4, Integer.parseInt(idArticulo));
+			
+			pst.executeUpdate();
+			pst.clearParameters();
+		}
+		catch (SQLException sqle) {
+
+			System.err.println("Error de SQL " + sqle.getMessage());
+			
+		}
+		finally {
+			GestorConexiones.cerrarRecursosPst(conexion, pst);
+		}
+	}
+	
 }
