@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>es.studium.practicaT2</groupId>
-  <artifactId>DIT2_PracticaT2</artifactId>
+  <groupId>es.studium.practicaT4</groupId>
+  <artifactId>DIT4_PracticaT4</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>DIT2_PracticaT2</name>
+  <name>DIT4_PracticaT4</name>
   
   <dependencies>
 <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
