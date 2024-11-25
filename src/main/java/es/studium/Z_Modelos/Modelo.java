@@ -285,7 +285,7 @@ public class Modelo {
 		if (filaSeleccionada != -1) {
 
 			modeloTablaTicket.removeRow(filaSeleccionada);
-			cuadroTextoTotal.setText(sumarColumnaTotalesLinea(3, modeloTablaTicket) + "");
+			cuadroTextoTotal.setText(sumarColumnaTotalesLinea(4, modeloTablaTicket) + "");
 		}
 
 	}
@@ -296,7 +296,7 @@ public class Modelo {
 		if (filaSeleccionada != -1) {
 
 			modeloTablaTicket.removeRow(filaSeleccionada);
-			cuadroTextoTotal.setText(sumarColumnaTotalesLinea(3, modeloTablaTicket) + "");
+			cuadroTextoTotal.setText(sumarColumnaTotalesLinea(4, modeloTablaTicket) + "");
 		}
 
 	}
