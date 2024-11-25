@@ -23,7 +23,7 @@ public class EliminarTicket_controlador implements ActionListener {
 		modelo = m;
 		
 		
-		v.tablaSeleccion.setModel(ModeloMetodosBD.mostrarTicketEnTabla(v.nombreColumnasSeleccion));
+		v.tablaSeleccion.setModel(ModeloMetodosBD.mostrarTicketsEnTabla(v.nombreColumnasSeleccion));
 
 		v.addWindowListener(new WindowAdapter() {
 			@Override
@@ -39,7 +39,8 @@ public class EliminarTicket_controlador implements ActionListener {
 					
 					filaSeleccionada = v.tablaSeleccion.rowAtPoint(e.getPoint());
 					idTicketGestionado = Modelo.obtenerValorIdTicketSeleccionado(v.tablaSeleccion);
-					v.tablaTicket.setModel(ModeloMetodosBD.mostrarArticulosTicketEnTabla(idTicketGestionado, v.nombreColumnasTicket));
+					v.tablaTicket.setModel(ModeloMetodosBD.mostrarArticulosTicketEnTabla(idTicketGestionado
+							, v.nombreColumnasTicket));
 					filaSeleccionada = v.tablaSeleccion.rowAtPoint(e.getPoint());
 				}
 				
@@ -47,7 +48,7 @@ public class EliminarTicket_controlador implements ActionListener {
 					
 					filaSeleccionada = v.tablaSeleccion.rowAtPoint(e.getPoint());
 					m.gestionBorradoTicket(filaSeleccionada,"ticket", v.tablaSeleccion);
-					v.tablaSeleccion.setModel(ModeloMetodosBD.mostrarTicketEnTabla(v.nombreColumnasSeleccion));
+					v.tablaSeleccion.setModel(ModeloMetodosBD.mostrarTicketsEnTabla(v.nombreColumnasSeleccion));
 					v.tablaTicket.setModel(ModeloMetodosBD.mostrarArticulosTicketEnTabla("0", v.nombreColumnasTicket));
 				}
 			}
@@ -75,7 +76,7 @@ public class EliminarTicket_controlador implements ActionListener {
 			}
 			else {
 				modelo.gestionBorradoTicket(filaSeleccionada,"ticket", vista.tablaSeleccion);//<--
-				vista.tablaSeleccion.setModel(ModeloMetodosBD.mostrarTicketEnTabla(vista.nombreColumnasSeleccion));
+				vista.tablaSeleccion.setModel(ModeloMetodosBD.mostrarTicketsEnTabla(vista.nombreColumnasSeleccion));
 				vista.tablaTicket.setModel(ModeloMetodosBD.mostrarArticulosTicketEnTabla("0", vista.nombreColumnasTicket));
 			}
 		}

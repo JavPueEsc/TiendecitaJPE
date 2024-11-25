@@ -19,9 +19,11 @@ public class GestorConexiones {
 		Connection connMySQL = null;
 		try {
 			Class.forName(MySQL_DB_DRIVER);
-			connMySQL = DriverManager.getConnection(MySQL_DB_URL + database, MySQL_DB_USUARIO, MySQL_DB_PASSWORD);
+			connMySQL = DriverManager.getConnection(MySQL_DB_URL + database
+					, MySQL_DB_USUARIO, MySQL_DB_PASSWORD);
 
-			System.out.println("La conexión a la base de datos " + database + " se ha realizado correctamente.");
+			System.out.println("La conexión a la base de datos " + database 
+					+ " se ha realizado correctamente.");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

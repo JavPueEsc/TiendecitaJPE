@@ -17,14 +17,17 @@ public class ModificarTicket2_controlador implements ActionListener {
 	public DefaultTableModel modeloActualizarTickets;
 	public String fechaTicket;
 	
-	public ModificarTicket2_controlador(ModificarTicket2_vista v, Modelo m, String idTicketGestionado) {
+	public ModificarTicket2_controlador(ModificarTicket2_vista v, Modelo m
+			, String idTicketGestionado) {
 		vista = v;
 		modelo = m;
 		this.idTicketGestionado = idTicketGestionado;
 		vista.tablaTickets = v.tablaTickets;
 		
 		v.tablaArticulos.setModel(ModeloMetodosBD.mostrarArticulosEnTabla(v.nombreColumnas));
-		modeloActualizarTickets = ModeloMetodosBD.mostrarArticulosTicketEnTablaParaActualizar(idTicketGestionado, v.nombreColumnasTicket);
+		modeloActualizarTickets = 
+				ModeloMetodosBD.mostrarArticulosTicketEnTablaParaActualizar(idTicketGestionado
+						, v.nombreColumnasTicket);
 		v.tablaTickets.setModel(modeloActualizarTickets);
 		m.ajustarAnchoColumnas(v.tablaArticulos);
 		m.ajustarAnchoColumnas(v.tablaTickets);
@@ -61,18 +64,21 @@ public class ModificarTicket2_controlador implements ActionListener {
 			
 			int filaSeleccionada = vista.tablaArticulos.getSelectedRow();
 			
-			 modelo.addArticuloActualizarTicket(vista, filaSeleccionada, vista.tablaArticulos, modeloActualizarTickets, vista.txtTotal);
+			 modelo.addArticuloActualizarTicket(vista, filaSeleccionada, vista.tablaArticulos
+					 , modeloActualizarTickets, vista.txtTotal);
 			
 		}
 		
 		if(e.getSource().equals(vista.btnQuitar)) {
 			int filaSeleccionada = vista.tablaTickets.getSelectedRow();
 			
-			modelo.borrarArticulo2(vista, filaSeleccionada, modeloActualizarTickets, vista.txtTotal);
+			modelo.borrarArticulo2(vista, filaSeleccionada, modeloActualizarTickets
+					, vista.txtTotal);
 		}
 		
 		if(e.getSource().equals(vista.btnLimpiar)) {
-			modelo.limpiarCamposYTablas(modeloActualizarTickets, vista.txtTotal, vista.txtFecha);
+			modelo.limpiarCamposYTablas(modeloActualizarTickets, vista.txtTotal
+					, vista.txtFecha);
 		}
 		
 		if(e.getSource().equals(vista.btnVolver)) {
@@ -83,18 +89,22 @@ public class ModificarTicket2_controlador implements ActionListener {
 		if(e.getSource().equals(vista.btnModificarTicket)) {
 			boolean fechaCorrecta = modelo.esFechaValida(vista.txtFecha.getText());
 			if(vista.txtFecha.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Fecha del ticket' es obligatorio.");
+				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Fecha del ticket' "
+						+ "es obligatorio.");
 			}
 			else if(modeloActualizarTickets.getRowCount()==0) {
-				JOptionPane.showMessageDialog(vista.contentPane, "El ticket debe incluir al menos un artículo.");
+				JOptionPane.showMessageDialog(vista.contentPane, "El ticket debe incluir "
+						+ "al menos un artículo.");
 			}
 			else if(!fechaCorrecta) {
-				JOptionPane.showMessageDialog(vista, "La fecha debe tener el formato dd/mm/aaaa");
+				JOptionPane.showMessageDialog(vista, "La fecha debe tener el formato "
+						+ "dd/mm/aaaa");
 			}
 			else {
-				ModeloMetodosBD.actualizarTicket(idTicketGestionado, vista.txtFecha.getText(), vista.txtTotal.getText(), vista.tablaTickets);
-				JOptionPane.showMessageDialog(vista.contentPane, "El ticket se ha modificado correctamente.");
-				//modelo.limpiarCamposYTablas(vista.modeloTablaTicket, vista.txtTotal, vista.txtFecha);
+				ModeloMetodosBD.actualizarTicket(idTicketGestionado, vista.txtFecha.getText()
+						, vista.txtTotal.getText(), vista.tablaTickets);
+				JOptionPane.showMessageDialog(vista.contentPane, "El ticket se ha modificado "
+						+ "correctamente.");
 			}
 		}
 		

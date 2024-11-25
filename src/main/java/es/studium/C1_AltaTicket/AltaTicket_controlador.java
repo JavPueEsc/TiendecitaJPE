@@ -49,7 +49,8 @@ public class AltaTicket_controlador implements ActionListener {
 			
 			int filaSeleccionada = vista.tablaArticulos.getSelectedRow();
 			
-			modelo.addArticulo(vista, filaSeleccionada,vista.tablaArticulos, vista.modeloTablaTicket, vista.txtTotal);
+			modelo.addArticulo(vista, filaSeleccionada,vista.tablaArticulos, 
+					vista.modeloTablaTicket, vista.txtTotal);
 		}
 		
 		if(e.getSource().equals(vista.btnQuitar)) {
@@ -70,18 +71,23 @@ public class AltaTicket_controlador implements ActionListener {
 		if(e.getSource().equals(vista.btnCrearTicket)) {
 			boolean fechaCorrecta = modelo.esFechaValida(vista.txtFecha.getText());
 			if(vista.txtFecha.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Fecha del ticket' es obligatorio.");
+				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Fecha del ticket' es "
+						+ "obligatorio.");
 			}
 			else if(vista.modeloTablaTicket.getRowCount()==0) {
-				JOptionPane.showMessageDialog(vista.contentPane, "El ticket debe incluir al menos un artículo.");
+				JOptionPane.showMessageDialog(vista.contentPane, "El ticket debe incluir al menos "
+						+ "un artículo.");
 			}
 			else if(!fechaCorrecta) {
 				JOptionPane.showMessageDialog(vista, "La fecha debe tener el formato dd/mm/aaaa");
 			}
 			else {
-				ModeloMetodosBD.crearTicket(vista.txtFecha.getText(), vista.txtTotal.getText(), vista.tablaTickets);
-				JOptionPane.showMessageDialog(vista.contentPane, "El ticket se ha creado correctamente.");
-				modelo.limpiarCamposYTablas(vista.modeloTablaTicket, vista.txtTotal, vista.txtFecha);
+				ModeloMetodosBD.crearTicket(vista.txtFecha.getText(), vista.txtTotal.getText()
+						, vista.tablaTickets);
+				JOptionPane.showMessageDialog(vista.contentPane
+						, "El ticket se ha creado correctamente.");
+				modelo.limpiarCamposYTablas(vista.modeloTablaTicket
+						, vista.txtTotal, vista.txtFecha);
 			}
 		}
 		

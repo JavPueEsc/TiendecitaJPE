@@ -83,7 +83,8 @@ public class ConsultarArticulo1_controlador implements ActionListener {
 			String[] ArrayContenido = cadenaContenido.split(" ");
 			//String articuloAEliminar = ArrayContenido[0];
 			
-			new ConsultarArticulo2_controlador(new ConsultarArticulo2_vista(), new Modelo(), ArrayContenido);
+			new ConsultarArticulo2_controlador(new ConsultarArticulo2_vista(), new Modelo()
+					, ArrayContenido);
 			vista.setVisible(false);
 		}
 	}

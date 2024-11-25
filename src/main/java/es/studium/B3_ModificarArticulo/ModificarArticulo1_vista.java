@@ -30,7 +30,6 @@ public class ModificarArticulo1_vista extends JFrame {
 	JViewport vistaScrollpanel = scrollPane.getViewport();
 	LineBorder border = new LineBorder(Color.white, 0);
 
-	
 	/**
 	 * Create the frame.
 	 */

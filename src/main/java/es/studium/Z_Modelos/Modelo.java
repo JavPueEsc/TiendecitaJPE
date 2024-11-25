@@ -68,8 +68,8 @@ public class Modelo {
 				BigDecimal unidades = new BigDecimal(numUnidades);
 				BigDecimal totalLinea = precio.multiply(unidades);
 
-				String[] nuevaLineaTabla = { ArrayContenido[0], ArrayContenido[1], ArrayContenido[2], numUnidades + "",
-						totalLinea.setScale(2, RoundingMode.HALF_UP) + "" };
+				String[] nuevaLineaTabla = { ArrayContenido[0], ArrayContenido[1], ArrayContenido[2]
+						, numUnidades + "", totalLinea.setScale(2, RoundingMode.HALF_UP) + "" };
 				modeloTablaTicket.addRow(nuevaLineaTabla);
 
 				cuadroTextoTotal.setText(sumarColumnaTotalesLinea(4, modeloTablaTicket) + "");
@@ -161,16 +161,14 @@ public class Modelo {
 			String[] ArrayContenido = cadenaContenido.split(" ");
 			String idEntidadAEliminar = ArrayContenido[0];
 			String entidadAEliminar = ArrayContenido[1];
-			// System.out.println(ArticuloAEliminar);
 
 			int respuesta = JOptionPane.showConfirmDialog(null,
-					"¿Está seguro de que desea eliminar el " + entidad + " '" + entidadAEliminar + "' ?", "Advertencia",
-					JOptionPane.YES_NO_OPTION);
+					"¿Está seguro de que desea eliminar el " + entidad + " '" + entidadAEliminar + 
+					"' ?", "Advertencia", JOptionPane.YES_NO_OPTION);
 
 			if (respuesta == JOptionPane.YES_OPTION) {
 				DefaultTableModel model = (DefaultTableModel) tablaSeleccion.getModel();
 				ModeloMetodosBD.eliminarArticulo(idEntidadAEliminar);
-				// model.removeRow(filaSeleccionada);
 				JOptionPane.showMessageDialog(null,
 						"El " + entidad + ": '" + entidadAEliminar + "' ha sido eliminado.");
 			} else if (respuesta == JOptionPane.NO_OPTION) {
@@ -194,17 +192,15 @@ public class Modelo {
 			String idEntidadAEliminar = ArrayContenido[0];
 			String fechaEntidadAEliminar = ArrayContenido[1];
 			String importeEntidadAEliminar = ArrayContenido[2];
-			// System.out.println(ArticuloAEliminar);
 
 			int respuesta = JOptionPane.showConfirmDialog(null,
 					"¿Está seguro de que desea eliminar el " + entidad + " '" + idEntidadAEliminar + 
-					"' con fecha "+fechaEntidadAEliminar+" e importe de "+importeEntidadAEliminar+" €?", "Advertencia",
-					JOptionPane.YES_NO_OPTION);
+					"' con fecha "+fechaEntidadAEliminar+" e importe de "+importeEntidadAEliminar+" €?", 
+					"Advertencia", JOptionPane.YES_NO_OPTION);
 
 			if (respuesta == JOptionPane.YES_OPTION) {
 				DefaultTableModel model = (DefaultTableModel) tablaSeleccion.getModel();
 				ModeloMetodosBD.eliminarTicket(idEntidadAEliminar);
-				// model.removeRow(filaSeleccionada);
 				JOptionPane.showMessageDialog(null,
 						"El " + entidad + ": '" + idEntidadAEliminar + "' ha sido eliminado.");
 			} else if (respuesta == JOptionPane.NO_OPTION) {
@@ -286,8 +282,6 @@ public class Modelo {
 	public void borrarArticulo(AltaTicket_vista vista, int filaSeleccionada, DefaultTableModel modeloTablaTicket,
 			JTextField cuadroTextoTotal) {
 
-		// int numeroDeFilasTabla = modeloTablaTicket.getRowCount();
-
 		if (filaSeleccionada != -1) {
 
 			modeloTablaTicket.removeRow(filaSeleccionada);
@@ -296,10 +290,8 @@ public class Modelo {
 
 	}
 
-	public void borrarArticulo2(ModificarTicket2_vista vista, int filaSeleccionada, DefaultTableModel modeloTablaTicket,
-			JTextField cuadroTextoTotal) {
-
-		// int numeroDeFilasTabla = modeloTablaTicket.getRowCount();
+	public void borrarArticulo2(ModificarTicket2_vista vista, int filaSeleccionada, 
+			DefaultTableModel modeloTablaTicket, JTextField cuadroTextoTotal) {
 
 		if (filaSeleccionada != -1) {
 
@@ -328,47 +320,36 @@ public class Modelo {
 		return suma;
 	}
 
-
 	public void mostrarContenidoTicket(int filaSeleccionada, DefaultTableModel modeloTablaTicket, String[]... tickets) {
 
-		// Limpiar el modelo de la tabla antes de mostrar los nuevos datos
-		modeloTablaTicket.setRowCount(0); // Limpia todas las filas previas
+		modeloTablaTicket.setRowCount(0); 
 
-		// Comprobar si la fila seleccionada está dentro del rango de los arrays
-		// proporcionados
 		if (filaSeleccionada >= 0 && filaSeleccionada < tickets.length) {
-			// Obtener el array (ticket) correspondiente a la fila seleccionada
+		
 			String[] ticketSeleccionado = tickets[filaSeleccionada];
 
-			// Crear un nuevo array que contenga solo los elementos a partir de la posición
-			// 3
 			String[] ticketDesdePosicion3 = new String[ticketSeleccionado.length - 3];
 			System.arraycopy(ticketSeleccionado, 3, ticketDesdePosicion3, 0, ticketDesdePosicion3.length);
 
-			// Inicializar el índice de fila y columna
 			int fila = 0;
 			int col = 0;
 
-			// Añadir elementos a la tabla de izquierda a derecha
 			for (String valor : ticketDesdePosicion3) {
-				// Si se ha llegado al final de las columnas, mover a la siguiente fila
+
 				if (col >= modeloTablaTicket.getColumnCount()) {
 					fila++;
-					col = 0; // Reiniciar el índice de columnas
+					col = 0; 
 				}
 
-				// Asegurarse de que hay suficientes filas en el modelo
 				while (modeloTablaTicket.getRowCount() <= fila) {
-					modeloTablaTicket.addRow(new String[modeloTablaTicket.getColumnCount()]); // Añade una nueva fila
-																								// vacía
+					modeloTablaTicket.addRow(new String[modeloTablaTicket.getColumnCount()]); 
+																								
 				}
 
-				// Asignar el valor a la celda correspondiente
 				modeloTablaTicket.setValueAt(valor, fila, col);
-				col++; // Mover a la siguiente columna
+				col++; 
 			}
 		} else {
-			// Si la fila seleccionada no es válida, mostrar un mensaje de error
 			System.out.println("Fila seleccionada fuera de rango.");
 		}
 	}
@@ -387,8 +368,8 @@ public class Modelo {
 
 	public ImageIcon escalarImagen(ImageIcon icono, int ancho, int alto) {
 		Image imagenOriginal = icono.getImage();
-		Image imagenEscalada = imagenOriginal.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH); // Escalar suavemente
-		return new ImageIcon(imagenEscalada); // Devolver la imagen escalada como ImageIcon
+		Image imagenEscalada = imagenOriginal.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH); 
+		return new ImageIcon(imagenEscalada); 
 	}
 
 	public void ajustarAnchoColumnas(JTable tabla) {
@@ -428,14 +409,14 @@ public class Modelo {
 	
 	public static String[] obtenerValoresColumna(JTable tabla, int numColumna) {
 	    int numFilas = tabla.getRowCount();
-	    String[] valores = new String[numFilas]; // Crear un array del tamaño del número de filas
+	    String[] valores = new String[numFilas]; 
 
 	    for (int i = 0; i < numFilas; i++) {
-	        Object valor = tabla.getValueAt(i, numColumna); // Obtener el valor de la columna especificada
-	        valores[i] = valor != null ? valor.toString() : null; // Convertir a String y manejar valores nulos
+	        Object valor = tabla.getValueAt(i, numColumna); 
+	        valores[i] = valor != null ? valor.toString() : null; 
 	    }
 
-	    return valores; // Devolver el array
+	    return valores; 
 	}
 	
 	public static String obtenerValorIdTicketSeleccionado(JTable tabla) {
@@ -446,8 +427,8 @@ public class Modelo {
 	    return null; 
 	}
 	
-	public DefaultTableModel addArticuloActualizarTicket(ModificarTicket2_vista vista, int filaSeleccionada, JTable tablaArticulos,
-			DefaultTableModel modeloTablaTicket, JTextField cuadroTextoTotal) {
+	public DefaultTableModel addArticuloActualizarTicket(ModificarTicket2_vista vista, int filaSeleccionada,
+			JTable tablaArticulos, DefaultTableModel modeloTablaTicket, JTextField cuadroTextoTotal) {
 		String articuloAAnadir = "";
 
 		if (filaSeleccionada != -1) {
@@ -470,8 +451,8 @@ public class Modelo {
 				BigDecimal unidades = new BigDecimal(numUnidades);
 				BigDecimal totalLinea = precio.multiply(unidades);
 
-				String[] nuevaLineaTabla = { ArrayContenido[0], ArrayContenido[1], ArrayContenido[2], numUnidades + "",
-						totalLinea.setScale(2, RoundingMode.HALF_UP) + "" };
+				String[] nuevaLineaTabla = { ArrayContenido[0], ArrayContenido[1], ArrayContenido[2], 
+						numUnidades + "", totalLinea.setScale(2, RoundingMode.HALF_UP) + "" };
 				modeloTablaTicket.addRow(nuevaLineaTabla);
 
 				cuadroTextoTotal.setText(sumarColumnaTotalesLinea(4, modeloTablaTicket) + "");

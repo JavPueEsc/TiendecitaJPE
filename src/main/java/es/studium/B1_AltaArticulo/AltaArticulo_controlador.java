@@ -51,13 +51,16 @@ public class AltaArticulo_controlador implements ActionListener {
 		
 		if(e.getSource().equals(vista.btnCrearArticulo)) {
 			if(vista.txtDescripcion.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Descripción' es obligatorio.");
+				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Descripción' "
+						+ "es obligatorio.");
 			}
 			else if(vista.txtPrecio.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Precio (€)' es obligatorio.");
+				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Precio (€)' "
+						+ "es obligatorio.");
 			}
 			else if(vista.txtCantidad.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Cantidad' es obligatorio.");
+				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Cantidad' "
+						+ "es obligatorio.");
 			}
 			else {
 				descripcion = vista.txtDescripcion.getText();
@@ -65,20 +68,23 @@ public class AltaArticulo_controlador implements ActionListener {
 					precio = Float.parseFloat(vista.txtPrecio.getText());
 				}
 				catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(vista.contentPane, "El valor introducido para el campo 'Precio' debe ser un número decimal.");
+					JOptionPane.showMessageDialog(vista.contentPane, "El valor introducido "
+							+ "para el campo 'Precio' debe ser un número decimal.");
 		            vista.txtPrecio.setText("");
 		        }
 				try {
 					cantidad = Integer.parseInt(vista.txtCantidad.getText());
 				}
 				catch (NumberFormatException ex) {
-					JOptionPane.showMessageDialog(vista.contentPane, "El valor introducido para el campo 'Cantidad' debe ser un número entero.");
+					JOptionPane.showMessageDialog(vista.contentPane, "El valor introducido "
+							+ "para el campo 'Cantidad' debe ser un número entero.");
 		            vista.txtCantidad.setText("");
 		        }
 				
 				if(!vista.txtPrecio.getText().isEmpty() && !vista.txtCantidad.getText().isEmpty()){
 					ModeloMetodosBD.crearArticulo(descripcion, precio, cantidad);
-					JOptionPane.showMessageDialog(vista.contentPane, "El artículo "+descripcion+" se ha creado correctamente.");
+					JOptionPane.showMessageDialog(vista.contentPane, "El artículo "+descripcion+" "
+							+ "se ha creado correctamente.");
 					modelo.limpiarCampos(vista.txtDescripcion, vista.txtPrecio, vista.txtCantidad);
 				}
 			}

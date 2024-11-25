@@ -71,15 +71,14 @@ public class ModeloMetodosBD {
 		try {
 			conexion = GestorConexiones.getMySQL_Connection("tiendecitajpe");
 			st = conexion.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-			String consulta = "SELECT IDARTICULO, DESCRIPCIONARTICULO, PRECIOARTICULO, CANTIDADARTICULO FROM ARTICULOS";
+			String consulta = "SELECT IDARTICULO, DESCRIPCIONARTICULO, PRECIOARTICULO, CANTIDADARTICULO "
+					+ "FROM ARTICULOS";
 			rs = st.executeQuery(consulta);
 
 			while (rs.next()) {
 				for (int i = 0; i < 4; i++) {
 					datosTabla[i] = rs.getString(i + 1);
-					// System.out.println(datosTabla[i]);//
 				}
-				// System.out.println(".");
 				modeloTabla.addRow(datosTabla);
 			}
 		} catch (SQLException e) {
@@ -172,7 +171,8 @@ public class ModeloMetodosBD {
 			String[] cantidadesArticulosdelTicket = Modelo.obtenerValoresColumna(tabla, 3);
 
 			for (int i = 0; i < articulosdelTicket.length; i++) {
-				String ins2 = "INSERT INTO PERTENENCIAS (CANTIDADARTICULOTICKET,IDARTICULOFK,IDTICKETFK) VALUES (?,?,?)";
+				String ins2 = "INSERT INTO PERTENENCIAS (CANTIDADARTICULOTICKET,IDARTICULOFK,IDTICKETFK) "
+						+ "VALUES (?,?,?)";
 				pst = conexion.prepareStatement(ins2);
 
 				pst.setInt(1, Integer.parseInt(cantidadesArticulosdelTicket[i]));
@@ -192,7 +192,7 @@ public class ModeloMetodosBD {
 		System.err.println("id asignado al ticket" + idTicket);
 	}
 
-	public static DefaultTableModel mostrarTicketEnTabla(String[] nombreColumnas) {
+	public static DefaultTableModel mostrarTicketsEnTabla(String[] nombreColumnas) {
 		Connection conexion = null;
 		Statement st = null;
 		ResultSet rs = null;
@@ -390,7 +390,8 @@ public class ModeloMetodosBD {
 			String[] cantidadesArticulosdelTicket = Modelo.obtenerValoresColumna(tabla, 3);
 
 			for (int i = 0; i < articulosdelTicket.length; i++) {
-				String ins3 = "INSERT INTO PERTENENCIAS (CANTIDADARTICULOTICKET,IDARTICULOFK,IDTICKETFK) VALUES (?,?,?)";
+				String ins3 = "INSERT INTO PERTENENCIAS (CANTIDADARTICULOTICKET,IDARTICULOFK,IDTICKETFK) "
+						+ "VALUES (?,?,?)";
 				pst = conexion.prepareStatement(ins3);
 
 				pst.setInt(1, Integer.parseInt(cantidadesArticulosdelTicket[i]));

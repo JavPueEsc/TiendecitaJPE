@@ -28,8 +28,6 @@ public class MenuPrincipal_vista extends JFrame {
 	public JLabel lblImagen;
 	public JMenu menuOpciones;
 	
-	
-	
 	/**
 	 * Create the frame.
 	 */

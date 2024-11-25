@@ -5,10 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
-
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-
 import es.studium.A_MenuPrincipal.MenuPrincipal_controlador;
 import es.studium.A_MenuPrincipal.MenuPrincipal_vista;
 import es.studium.Z_Modelos.Modelo;
@@ -25,7 +21,7 @@ public class ConsultarTicket_controlador implements ActionListener {
 		vista = v;
 		modelo = m;
 
-		v.tablaSeleccion.setModel(ModeloMetodosBD.mostrarTicketEnTabla(v.nombreColumnasSeleccion));
+		v.tablaSeleccion.setModel(ModeloMetodosBD.mostrarTicketsEnTabla(v.nombreColumnasSeleccion));
 		
 		v.addWindowListener(new WindowAdapter() {
 			@Override
@@ -40,7 +36,8 @@ public class ConsultarTicket_controlador implements ActionListener {
 				if(e.getClickCount()==1) {
 					filaSeleccionada = v.tablaSeleccion.rowAtPoint(e.getPoint());
 					idTicketGestionado = Modelo.obtenerValorIdTicketSeleccionado(v.tablaSeleccion);
-					v.tablaTicket.setModel(ModeloMetodosBD.mostrarArticulosTicketEnTabla(idTicketGestionado, v.nombreColumnasTicket));
+					v.tablaTicket.setModel(ModeloMetodosBD.mostrarArticulosTicketEnTabla(idTicketGestionado
+							, v.nombreColumnasTicket));
 					filaSeleccionada = v.tablaSeleccion.rowAtPoint(e.getPoint());
 				}
 			}

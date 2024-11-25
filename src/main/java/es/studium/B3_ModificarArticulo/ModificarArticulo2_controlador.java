@@ -49,18 +49,22 @@ public class ModificarArticulo2_controlador implements ActionListener {
 		
 		if(e.getSource().equals(vista.btnModificarArticulo)) {
 			if(vista.txtDescripcion.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Descripción' es obligatorio.");
+				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Descripción' es "
+						+ "obligatorio.");
 			}
 			else if(vista.txtPrecio.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Precio (€)' es obligatorio.");
+				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Precio (€)' es "
+						+ "obligatorio.");
 			}
 			else if(vista.txtCantidad.getText().isEmpty()) {
-				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Cantidad' es obligatorio.");
+				JOptionPane.showMessageDialog(vista.contentPane, "El campo 'Cantidad' es "
+						+ "obligatorio.");
 			}
 			else {
-				ModeloMetodosBD.actualizarArticulo(contenido[0], vista.txtDescripcion.getText(), vista.txtPrecio.getText(), 
-						vista.txtCantidad.getText());
-				JOptionPane.showMessageDialog(vista.contentPane, "El artículo se ha modificado correctamente.");
+				ModeloMetodosBD.actualizarArticulo(contenido[0], vista.txtDescripcion.getText(), 
+						vista.txtPrecio.getText(), vista.txtCantidad.getText());
+				JOptionPane.showMessageDialog(vista.contentPane, "El artículo se ha modificado "
+						+ "correctamente.");
 				new ModificarArticulo1_controlador(new ModificarArticulo1_vista(), new Modelo());
 				vista.setVisible(false);
 			}

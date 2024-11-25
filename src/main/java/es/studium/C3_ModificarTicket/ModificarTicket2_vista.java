@@ -7,18 +7,12 @@ import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
-
 import javax.swing.JTextField;
 import javax.swing.JViewport;
-
 import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerListModel;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -36,12 +30,11 @@ public class ModificarTicket2_vista extends JFrame {
 	public JButton btnLimpiar;
 	public JButton btnVolver;
 	public JTable tablaTickets;
-	//public JScrollPane scrollPaneArticulos;
-	//public JTable tablaArticulos;
 	public JButton btnAddArticulo;
 	public JButton btnQuitar;
 	public DefaultTableModel modeloTablaTicket;
-	public String[] nombreColumnasTicket = {"Id", "Descripción", "Precio (\u20AC)", "Unidades", "Total línea (€)"};
+	public String[] nombreColumnasTicket = {"Id", "Descripción", "Precio (\u20AC)", "Unidades"
+			, "Total línea (€)"};
 	public JLabel lbltextoNunTicket;
 	public JLabel lblnumTicket;
 	private JLabel lblArtculosDisponibles;

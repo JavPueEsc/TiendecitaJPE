@@ -30,7 +30,8 @@ public class ModificarTicket1_vista extends JFrame {
 	JViewport vistaScrollpanelSeleccion = scrollPaneSeleccion.getViewport();
 	LineBorder borderSeleccion = new LineBorder(Color.white, 0);
 	
-	public String[] nombreColumnasTicket = {"Artículo", "Precio (€)", "Unidades", "Total línea (€)"};
+	public String[] nombreColumnasTicket = {"Artículo", "Precio (€)", "Unidades",
+			"Total línea (€)"};
 	public JTable tablaTicket = new JTable();
 	DefaultTableModel modeloTablaTicket = new DefaultTableModel(nombreColumnasTicket, 0);
 	JScrollPane scrollPaneTicket = new JScrollPane(tablaTicket);

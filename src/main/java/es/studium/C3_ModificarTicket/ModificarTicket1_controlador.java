@@ -5,10 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
-
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
-
 import es.studium.A_MenuPrincipal.MenuPrincipal_controlador;
 import es.studium.A_MenuPrincipal.MenuPrincipal_vista;
 import es.studium.Z_Modelos.Modelo;
@@ -25,7 +22,7 @@ public class ModificarTicket1_controlador implements ActionListener {
 		vista = v;
 		modelo = m;
 		
-		v.tablaSeleccion.setModel(ModeloMetodosBD.mostrarTicketEnTabla(v.nombreColumnasSeleccion));
+		v.tablaSeleccion.setModel(ModeloMetodosBD.mostrarTicketsEnTabla(v.nombreColumnasSeleccion));
 
 		v.addWindowListener(new WindowAdapter() {
 			@Override
@@ -41,13 +38,15 @@ public class ModificarTicket1_controlador implements ActionListener {
 
 					filaSeleccionada = v.tablaSeleccion.rowAtPoint(e.getPoint());
 					idTicketGestionado = Modelo.obtenerValorIdTicketSeleccionado(v.tablaSeleccion);
-					v.tablaTicket.setModel(ModeloMetodosBD.mostrarArticulosTicketEnTabla(idTicketGestionado, v.nombreColumnasTicket));
+					v.tablaTicket.setModel(ModeloMetodosBD.mostrarArticulosTicketEnTabla(idTicketGestionado
+							, v.nombreColumnasTicket));
 					filaSeleccionada = v.tablaSeleccion.rowAtPoint(e.getPoint());
 				}
 				
 				if (e.getClickCount() == 2) {
 					
-					new ModificarTicket2_controlador (new ModificarTicket2_vista(), new Modelo(),idTicketGestionado);
+					new ModificarTicket2_controlador (new ModificarTicket2_vista()
+							, new Modelo(),idTicketGestionado);
 					v.setVisible(false);
 				}
 			}
@@ -74,7 +73,8 @@ public class ModificarTicket1_controlador implements ActionListener {
 				JOptionPane.showMessageDialog(null, "Debe seleccionar un ticket.");
 			}
 			else {
-				new ModificarTicket2_controlador (new ModificarTicket2_vista(), new Modelo(),idTicketGestionado);
+				new ModificarTicket2_controlador (new ModificarTicket2_vista(), new Modelo()
+						,idTicketGestionado);
 				vista.setVisible(false);			}
 		}
 	}

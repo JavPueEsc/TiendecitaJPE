@@ -83,7 +83,8 @@ public class ModificarArticulo1_controlador implements ActionListener {
 			String[] ArrayContenido = cadenaContenido.split(" ");
 			//String articuloAEliminar = ArrayContenido[0];
 			
-			new ModificarArticulo2_controlador(new ModificarArticulo2_vista(), new Modelo(), ArrayContenido);
+			new ModificarArticulo2_controlador(new ModificarArticulo2_vista(), 
+					new Modelo(), ArrayContenido);
 			vista.setVisible(false);
 		}
 	}
