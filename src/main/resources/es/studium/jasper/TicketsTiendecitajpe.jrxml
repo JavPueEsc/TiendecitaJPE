@@ -1,17 +1,12 @@
 <!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
-<jasperReport name="ArticulosTiendecitajpe" language="java" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="415961f5-e0ec-4efd-8fca-bc7402547d64">
+<jasperReport name="TicketsTiendecitajpe" language="java" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1ced8905-c913-475b-8006-8092adb53551">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="conexiónBD_tiendecitajpe"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<template><![CDATA["HojaEstilosPracticaDIt5.jrtx"]]></template>
 	<parameter name="fecha_generacion" class="java.lang.String"/>
 	<parameter name="fechaInicio" class="java.lang.String"/>
 	<parameter name="fechaFin" class="java.lang.String"/>
-	<query language="sql"><![CDATA[SELECT idTicket, 
-       DATE_FORMAT(fechaTicket, '%d/%m/%Y') AS fechaTicket, 
-       totalTicket
-FROM tickets 
-WHERE DATE(fechaTicket) BETWEEN STR_TO_DATE($P{fechaInicio}, '%d/%m/%Y') 
-                           AND STR_TO_DATE($P{fechaFin}, '%d/%m/%Y');]]></query>
+	<query language="sql"><![CDATA[SELECT idTicket, DATE_FORMAT(fechaTicket, '%d/%m/%Y') AS fechaTicket,  totalTicket FROM tickets WHERE DATE(fechaTicket) BETWEEN STR_TO_DATE($P{fechaInicio}, '%d/%m/%Y') AND STR_TO_DATE($P{fechaFin}, '%d/%m/%Y')]]></query>
 	<field name="idTicket" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.name" value="idTicket"/>
 		<property name="com.jaspersoft.studio.field.label" value="idTicket"/>
@@ -27,73 +22,73 @@ WHERE DATE(fechaTicket) BETWEEN STR_TO_DATE($P{fechaInicio}, '%d/%m/%Y')
 		<property name="com.jaspersoft.studio.field.tree.path" value="tickets"/>
 	</field>
 	<background splitType="Stretch"/>
-	<title height="101" splitType="Stretch">
-		<element kind="staticText" uuid="ffde693c-82b9-477d-b7c8-abde400effff" x="0" y="0" width="554" height="50" style="a_estiloTitulo">
+	<title height="100" splitType="Stretch">
+		<element kind="staticText" uuid="9249dcb5-2a16-490f-941d-e9a00734b9fc" x="0" y="0" width="554" height="50" style="a_estiloTitulo">
 			<text><![CDATA[Informe sobre ticktes]]></text>
 		</element>
-		<element kind="staticText" uuid="c6274d9f-000f-4693-9bcb-b07e5e303d19" x="-19" y="50" width="138" height="50" style="a_estiloTitulo">
+		<element kind="staticText" uuid="88b2dd7e-018d-4a54-970d-d46aa002b46a" x="-19" y="50" width="138" height="50" style="a_estiloTitulo">
 			<text><![CDATA[Desde el]]></text>
 		</element>
-		<element kind="textField" uuid="8741095f-56d4-4826-890f-da3771d503ae" x="120" y="50" width="170" height="50" style="a_estiloTitulo">
+		<element kind="textField" uuid="06d113d2-9b8b-4bf1-ab48-31a47cac00a7" x="120" y="50" width="170" height="50" style="a_estiloTitulo">
 			<expression><![CDATA[$P{fechaInicio}]]></expression>
 		</element>
-		<element kind="staticText" uuid="7d6506eb-34f0-41f0-b406-56d67fb6e527" x="290" y="50" width="120" height="50" style="a_estiloTitulo">
+		<element kind="staticText" uuid="ed652e40-6c2c-46c4-80cd-8c683568be35" x="290" y="50" width="120" height="50" style="a_estiloTitulo">
 			<text><![CDATA[hasta el]]></text>
 		</element>
-		<element kind="textField" uuid="1d06a995-43db-4337-ab7f-84824f9c41b2" x="410" y="50" width="164" height="50" style="a_estiloTitulo">
+		<element kind="textField" uuid="8f93b597-aded-4eb8-a062-ed67190c9613" x="410" y="50" width="164" height="50" style="a_estiloTitulo">
 			<expression><![CDATA[$P{fechaFin}]]></expression>
 		</element>
 	</title>
 	<pageHeader height="189" splitType="Stretch">
-		<element kind="staticText" uuid="b6c476fc-0bde-434f-a56e-ce267904de32" x="0" y="0" width="554" height="40" style="b_estiloSubtitulo">
+		<element kind="staticText" uuid="0b779f60-ae77-4038-96d0-4cc67fc31293" x="0" y="0" width="554" height="40" style="b_estiloSubtitulo">
 			<text><![CDATA[TiendecitaJPE]]></text>
 		</element>
-		<element kind="image" uuid="155a298b-b4a0-4ac6-8729-37be0961a4df" x="138" y="37" width="263" height="149">
+		<element kind="image" uuid="8162246b-2cf3-477e-bc52-79e33fda2953" x="138" y="37" width="263" height="149">
 			<expression><![CDATA["imagenInformePracticaT5.png"]]></expression>
 		</element>
 	</pageHeader>
-	<columnHeader height="32" splitType="Stretch">
-		<element kind="staticText" uuid="08fdabeb-8794-43d7-b9db-a705bbe7a59d" x="0" y="0" width="185" height="30" style="c_estiloNombreColumnas">
+	<columnHeader height="33" splitType="Stretch">
+		<element kind="staticText" uuid="dc05edf5-cc96-4ee6-b791-349469b8065a" x="0" y="0" width="185" height="30" style="c_estiloNombreColumnas">
 			<text><![CDATA[idTicket]]></text>
-			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a7b31927-5352-443e-9883-739011891a13"/>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9e1138a1-6aae-4cef-b241-46f0884184a6"/>
 		</element>
-		<element kind="staticText" uuid="a808244c-4d94-4b66-b079-f29ea7d9a308" x="185" y="0" width="185" height="30" style="c_estiloNombreColumnas">
+		<element kind="staticText" uuid="ca418a6c-3569-4727-8136-f3fc29aa4ad9" x="185" y="0" width="185" height="30" style="c_estiloNombreColumnas">
 			<text><![CDATA[fechaTicket]]></text>
-			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="334caac5-cc26-41c0-895c-0be9e0086b9a"/>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="164b271d-4e5f-4701-a9bf-799e3dc2a676"/>
 		</element>
-		<element kind="staticText" uuid="82c5b639-2c12-4583-b3b1-9286b18ffe48" x="370" y="0" width="185" height="30" style="c_estiloNombreColumnas">
+		<element kind="staticText" uuid="eb0539f1-dd8d-4f81-963a-f44ffa95479a" x="370" y="0" width="185" height="30" style="c_estiloNombreColumnas">
 			<text><![CDATA[totalTicket]]></text>
-			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="23e598dc-e2d3-4105-8449-b56047b003cf"/>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="32f1f5ad-961f-4330-ada2-f83f1fbe8ce4"/>
 		</element>
 	</columnHeader>
 	<detail>
-		<band height="32" splitType="Stretch">
-			<element kind="textField" uuid="3b521e52-1125-4c4a-bb14-70cfa1333858" x="0" y="0" width="185" height="30" style="d_estiloCampos">
+		<band height="34" splitType="Stretch">
+			<element kind="textField" uuid="caf04eac-5f9f-4ab6-ae7e-a6642e3acf35" x="0" y="0" width="185" height="30" style="d_estiloCampos">
 				<expression><![CDATA[$F{idTicket}]]></expression>
-				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a7b31927-5352-443e-9883-739011891a13"/>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9e1138a1-6aae-4cef-b241-46f0884184a6"/>
 			</element>
-			<element kind="textField" uuid="3355f320-9a87-4497-b856-ff7aa1f0aae5" x="185" y="0" width="185" height="30" style="d_estiloCampos">
+			<element kind="textField" uuid="e61fb240-fef9-4d18-98c8-3c463169832e" x="185" y="0" width="185" height="30" style="d_estiloCampos">
 				<expression><![CDATA[$F{fechaTicket}]]></expression>
-				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="334caac5-cc26-41c0-895c-0be9e0086b9a"/>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="164b271d-4e5f-4701-a9bf-799e3dc2a676"/>
 			</element>
-			<element kind="textField" uuid="477900ad-c24d-4c50-8a1a-ab175e929828" x="370" y="0" width="185" height="30" style="d_estiloCampos">
+			<element kind="textField" uuid="362e6fa0-4321-45c6-af30-e5945dfff20b" x="370" y="0" width="185" height="30" style="d_estiloCampos">
 				<expression><![CDATA[$F{totalTicket}]]></expression>
-				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="23e598dc-e2d3-4105-8449-b56047b003cf"/>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="32f1f5ad-961f-4330-ada2-f83f1fbe8ce4"/>
 			</element>
 		</band>
 	</detail>
-	<pageFooter height="60" splitType="Stretch">
-		<element kind="staticText" uuid="c964317b-60bb-4404-a11b-ab123396493b" x="0" y="0" width="166" height="30" style="e_estiloPieDePagina">
+	<pageFooter height="61" splitType="Stretch">
+		<element kind="staticText" uuid="c32ec7f9-fa86-4b86-a08b-a55b51fdb397" x="0" y="0" width="166" height="30" style="e_estiloPieDePagina">
 			<text><![CDATA[Autor: Javier Pueyo Escalante]]></text>
 		</element>
-		<element kind="textField" uuid="dc9abda7-6f53-4c56-b8b2-fb7be91342e4" x="401" y="30" width="80" height="30" hTextAlign="Right" style="e_estiloPieDePagina">
+		<element kind="textField" uuid="4544b8d3-dabe-4dc0-9635-f96e2a83a1d1" x="0" y="30" width="278" height="30" style="e_estiloPieDePagina">
+			<expression><![CDATA["Fecha de generación del informe: "+$P{fecha_generacion}]]></expression>
+		</element>
+		<element kind="textField" uuid="55dada09-d720-45cb-8c24-6a6e6296c229" x="401" y="30" width="80" height="30" hTextAlign="Right" style="e_estiloPieDePagina">
 			<expression><![CDATA["Página " + $V{PAGE_NUMBER}]]></expression>
 		</element>
-		<element kind="textField" uuid="5460ddd7-e010-4a7e-b3fc-cdfc9b05852b" x="481" y="30" width="74" height="30" evaluationTime="Report" hTextAlign="Left" style="e_estiloPieDePagina">
+		<element kind="textField" uuid="b5bc1d63-db68-4d78-9956-ebf78f8e82d8" x="481" y="30" width="74" height="30" evaluationTime="Report" hTextAlign="Left" style="e_estiloPieDePagina">
 			<expression><![CDATA[" de" + $V{PAGE_NUMBER}]]></expression>
-		</element>
-		<element kind="textField" uuid="4a59c6a8-8bb7-484f-956a-30a007689a29" x="0" y="30" width="278" height="30" style="e_estiloPieDePagina">
-			<expression><![CDATA["Fecha de generación del informe: "+$P{fecha_generacion}]]></expression>
 		</element>
 	</pageFooter>
 </jasperReport>
