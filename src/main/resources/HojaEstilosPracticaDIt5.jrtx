@@ -1,0 +1,7 @@
+<jasperTemplate>
+	<style name="a_estiloTitulo" forecolor="#5B7B92" hTextAlign="Center" vTextAlign="Middle" fontSize="31.0" bold="true"/>
+	<style name="b_estiloSubtitulo" forecolor="#D43513" hTextAlign="Center" vTextAlign="Middle" hImageAlign="Center" fontSize="24.0" bold="true" italic="true"/>
+	<style name="c_estiloNombreColumnas" forecolor="#5B7B92" hTextAlign="Center" vTextAlign="Middle" fontSize="16.0" bold="true" underline="true"/>
+	<style name="d_estiloCampos" forecolor="#D43513" hTextAlign="Center" vTextAlign="Middle" fontSize="12.0"/>
+	<style name="e_estiloPieDePagina" forecolor="#5B7B92" hTextAlign="Left" vTextAlign="Middle" fontSize="10.0"/>
+</jasperTemplate>
