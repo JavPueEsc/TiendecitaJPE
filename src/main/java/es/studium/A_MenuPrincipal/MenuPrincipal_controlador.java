@@ -6,14 +6,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.sql.Connection;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.HashMap;
-
 import javax.swing.JOptionPane;
-
 import es.studium.B1_AltaArticulo.AltaArticulo_controlador;
 import es.studium.B1_AltaArticulo.AltaArticulo_vista;
 import es.studium.B2_EliminarArticulo.EliminarArticulo_controlador;
@@ -224,7 +218,8 @@ public class MenuPrincipal_controlador implements ActionListener{
 			else {
 				try {
 					// Compilar el informe generando fichero .jasper
-						JasperCompileManager.compileReportToFile("./src/main/resources/es/studium/jasper/TicketsTiendecitajpe.jrxml");
+						JasperCompileManager.compileReportToFile("./src/main/resources/es/studium/jasper/"
+								+ "TicketsTiendecitajpe.jrxml");
 						
 					// Objeto para guardar parámetros necesarios para el informe
 								HashMap<String, Object> parametros = new HashMap<String, Object>();
@@ -236,7 +231,8 @@ public class MenuPrincipal_controlador implements ActionListener{
 								System.out.println(Modelo.europeoMysql(vista.txtFechaHasta.getText()));
 					// Cargar el informe compilado
 								JasperReport report = (JasperReport) JRLoader
-										.loadObjectFromFile("./src/main/resources/es/studium/jasper/TicketsTiendecitajpe.jasper");
+										.loadObjectFromFile("./src/main/resources/es/studium/jasper/"
+												+ "TicketsTiendecitajpe.jasper");
 
 					// Conectar a la base de datos para sacar la información
 								Connection conexion2 = GestorConexiones.getMySQL_Connection("tiendecitajpe");

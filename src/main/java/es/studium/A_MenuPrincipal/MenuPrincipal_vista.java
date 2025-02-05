@@ -41,7 +41,7 @@ public class MenuPrincipal_vista extends JFrame {
 	public JMenuItem mniInformeTickets;
 	
 	//Elementos del cuadro de dialogo
-	public JDialog dlgTickets = new JDialog(this,false);
+	public JDialog dlgTickets = new JDialog(this,true);
 	public JLabel lblFechaDesde = new JLabel("Fecha Desde: ");
 	public JLabel lblFechaHasta= new JLabel("Fecha Hasta: ");
 	public JTextField txtFechaDesde = new JTextField();
