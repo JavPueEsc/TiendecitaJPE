@@ -15,6 +15,12 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
 
+/**
+ * La clase <b>ConsultarTicket_vista</b> contiene los componentes gráficos de la ventana 
+ * 'Consultar Tickets'.
+ * @author Javier Pueyo
+ * @version 2.0
+ */
 public class ConsultarTicket_vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;

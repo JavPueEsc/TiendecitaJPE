@@ -9,7 +9,6 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -19,21 +18,36 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-
-import es.studium.B1_AltaArticulo.AltaArticulo_vista;
 import es.studium.C1_AltaTicket.AltaTicket_vista;
 import es.studium.C3_ModificarTicket.ModificarTicket2_vista;
 
+/**
+ * La clase <b>Modelo</b> contiene los métodos de la aplicación que permiten la gestión de tickets y artículos.
+ * @author Javier Pueyo
+ * @version 2.0
+ */
 public class Modelo {
 
 	JTextField campoTexto;
 
+	/**
+	 * El método <b>limpiarCampos()</b> tiene la función de borrar el contenido de una colección de campos de texto
+	 * @param camposTexto Parámetro de tipo {@code JTextField...}. Se corresponde con una serie de campos de texto
+	 * cuyos contenidos se pretenden borrar.
+	 */
 	public void limpiarCampos(JTextField... camposTexto) {
 		for (JTextField campo : camposTexto) {
 			campo.setText("");
 		}
 	}
 
+	/**
+	 * El método <b>limpiarCamposYTablas()</b> tiene la función de borrar el contenido de varios campos de textos y
+	 * de una tabla.
+	 * @param modeloTablaTicket Parámetro de tipo {@code DefaultTableModel}. Se corresponde con el modelo de la tabla que se desea limpiar.
+	 * @param cuadroTextoTotal Parámetro de tipo {@code JTextField}. Se corresponde con un cuadro de texto que se desea limpiar.
+	 * @param camposTexto Parámetro de tipo {@code JTextField}. Se corresponde con un cuadro de texto que se desea limpiar.
+	 */
 	public void limpiarCamposYTablas(DefaultTableModel modeloTablaTicket, JTextField cuadroTextoTotal,
 			JTextField... camposTexto) {
 		for (JTextField campo : camposTexto) {
@@ -44,6 +58,21 @@ public class Modelo {
 		cuadroTextoTotal.setText(sumarColumnaTotalesLinea(3, modeloTablaTicket) + "");
 	}
 
+	/**
+	 * El método <b>addArticulo()</b> tiene la función de agregar un artículo al ticket de la compra
+	 * tras haberlo seleccionado de una tabla de artículos. Solicita al usuario la cantidad de unidades del artículo a agregar
+	 * valiendose de un cuadro de diálogo, calcula el precio total del ticket y actualiza el modelo de la tabla
+	 * donde se muestran los artículos pertenecientes a un ticket.
+	 * @param vista Parámetro del tipo {@code AltaTicket_vista}. Se corresponde con la vista donde se muestra el 
+	 * cuadro de diálogo para ingresar la cantidad del artículo.
+	 * @param filaSeleccionada Parámetro de tipo {@code int}. Se corersponde con el índice de la fila seleccionada en la tabla de artículos.
+	 * @param tablaArticulos Parámetro de tipo {@code JTable}. Se corresponde con la tabla que contiene los artículos 
+	 * disponibles para agregar al ticket.
+	 * @param modeloTablaTicket Parámetro del tipo {@code DefaultTableModel}. Se corresponde con el modelo de la tabla
+	 * donde se alojan los artículos añadidos al ticket.
+	 * @param cuadroTextoTotal Parámetro de tipo {@code JTextField}. Se corresponde con el cuadrod e texto donde se 
+	 * muestra la suma de todos los precios de los artículos incluidos en el ticket.
+	 */
 	public void addArticulo(AltaTicket_vista vista, int filaSeleccionada, JTable tablaArticulos,
 			DefaultTableModel modeloTablaTicket, JTextField cuadroTextoTotal) {
 		String articuloAAnadir = "";
@@ -82,6 +111,21 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * El método <b>addArticulo2()</b> tiene la función de agregar un artículo al ticket de la compra
+	 * tras haberlo seleccionado de una tabla de artículos. Solicita al usuario la cantidad de unidades del artículo a agregar
+	 * valiendose de un cuadro de diálogo, calcula el precio total del ticket y actualiza el modelo de la tabla
+	 * donde se muestran los artículos pertenecientes a un ticket.
+	 * @param vista Parámetro del tipo {@code ModificarTicket2_vista}. Se corresponde con la vista donde se muestra el 
+	 * cuadro de diálogo para ingresar la cantidad del artículo.
+	 * @param filaSeleccionada Parámetro de tipo {@code int}. Se corersponde con el índice de la fila seleccionada en la tabla de artículos.
+	 * @param tablaArticulos Parámetro de tipo {@code JTable}. Se corresponde con la tabla que contiene los artículos 
+	 * disponibles para agregar al ticket.
+	 * @param modeloTablaTicket Parámetro del tipo {@code DefaultTableModel}. Se corresponde con el modelo de la tabla
+	 * donde se alojan los artículos añadidos al ticket.
+	 * @param cuadroTextoTotal Parámetro de tipo {@code JTextField}. Se corresponde con el cuadrod e texto donde se 
+	 * muestra la suma de todos los precios de los artículos incluidos en el ticket.
+	 */
 	public void addArticulo2(ModificarTicket2_vista vista, int filaSeleccionada, JTable tablaArticulos,
 			DefaultTableModel modeloTablaTicket, JTextField cuadroTextoTotal) {
 		String articuloAAnadir = "";
@@ -120,6 +164,16 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * El método <b>establecerTotal()</b> tiene la función de calcular la suma de los precios de todos
+	 * los artículos incluidos en una tabla referente a un ticket.
+	 * @param vista Parámetro de tipo {@code ModificarTicket2_vista}. Se corresponde con la vista donde 
+	 * se encuentra la tabla de la cual se obtienen los datos para hacer el cálculo del precio total.
+	 * @param modeloTablaTicket Parámetro del tipo {@code DefaultTableModel}. Se corresponde con el modelo de la tabla
+	 * donde se alojan los artículos añadidos al ticket.
+	 * @param cuadroTextoTotal Parámetro de tipo {@code JTextField}. Se corresponde con el campo de texto donde
+	 * se establecerá el valor calculado por el método.
+	 */
 	public void establecerTotal(ModificarTicket2_vista vista, DefaultTableModel modeloTablaTicket,
 			JTextField cuadroTextoTotal) {
 
@@ -147,6 +201,15 @@ public class Modelo {
 		cuadroTextoTotal.setText(sumaTotal.setScale(2, RoundingMode.HALF_UP).toString());
 	}
 
+	/**
+	 * El método <b>gestionBorradoArticulo()</b> tiene la función de eliminar un artículo de la aplicación.
+	 * Antes de realizar el borrado, solicitará una confirmación en un cuadro de diálogo.
+	 * @param filaSeleccionada Parámetro de tipo {@code int}. Se corresponde con la fila seleccionada en la 
+	 * tabla de selección de artículos.
+	 * @param entidad Parámetro de tipo {@code String}. Se corresponde con la entidad del elemento que se pretende borrar.
+	 * @param tablaSeleccion Parámetro de tipo {@code JTable}. Se corresponde con la tabla que contiene los elementos de 
+	 * la entidad del elemento que se pretende eliminar.
+	 */
 	public void gestionBorradoArticulo(int filaSeleccionada, String entidad, JTable tablaSeleccion) {
 
 		if (filaSeleccionada != -1) {
@@ -177,6 +240,15 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * El método <b>gestionBorradoTicket()</b> tiene la función de eliminar un ticket de la aplicación.
+	 * Antes de realizar el borrado, solicitará una confirmación en un cuadro de diálogo.
+	 *  @param filaSeleccionada Parámetro de tipo {@code int}. Se corresponde con la fila seleccionada en la 
+	 * tabla de selección de artículos.
+	 * @param entidad Parámetro de tipo {@code String}. Se corresponde con la entidad del elemento que se pretende borrar.
+	 * @param tablaSeleccion Parámetro de tipo {@code JTable}. Se corresponde con la tabla que contiene los elementos de 
+	 * la entidad del elemento que se pretende eliminar.
+	 */
 	public void gestionBorradoTicket(int filaSeleccionada, String entidad, JTable tablaSeleccion) {
 
 		if (filaSeleccionada != -1) {
@@ -208,7 +280,15 @@ public class Modelo {
 			}
 		}
 	}
-	
+	/**
+	 * El método <b>mostrarDialogo()</b> crea un cuadro de diálogo que permite al usuario introducir el
+	 * número de unidades de un artículo que desea introducir en un ticket.
+	 * @param vista Parámetro de tipo {@code AltaTicket_vista}. Se corresponde con la vista donde se mostrará el diálogo.
+	 * @param articulo Parámetro de tipo {@code String}. Se corresponde con el nombre del artículo cuyo número de unidades
+	 * se ha de establecer.
+	 * @return numUnidades que es un objeto de tipo {@code int} y se corresponde con el número de unidades
+	 * que ha introducido el usuario.
+	 */
 	public int mostrarDialogo(AltaTicket_vista vista, String articulo) {
 		final int[] numUnidades = { 1 };
 
@@ -244,6 +324,15 @@ public class Modelo {
 		return numUnidades[0];
 	}
 
+	/**
+	 * El método <b>mostrarDialogo2()</b> crea un cuadro de diálogo que permite al usuario introducir el
+	 * número de unidades de un artículo que desea introducir en un ticket.
+	 * @param vista Parámetro de tipo {@code ModificarTicket2_vista}. Se corresponde con la vista donde se mostrará el diálogo.
+	 * @param articulo Parámetro de tipo {@code String}. Se corresponde con el nombre del artículo cuyo número de unidades
+	 * se ha de establecer.
+	 * @return numUnidades que es un objeto de tipo {@code int} y se corresponde con el número de unidades
+	 * que ha introducido el usuario.
+	 */
 	public int mostrarDialogo2(ModificarTicket2_vista vista, String articulo) {
 		final int[] numUnidades = { 1 };
 
@@ -279,6 +368,18 @@ public class Modelo {
 		return numUnidades[0];
 	}
 
+	/**
+	 * El método <b>borrarArticulo()</b> tiene la función de borrar una línea correspondiente a un artículo de la tabla
+	 * que contiene los artículos pertenecientes a un ticket.
+	 * @param vista Parámetro de tipo {@code AltaTicket_vista}. Se corresponde con la vista donde se encuentra la tabla
+	 * que contiene los artículos correspondientes aun ticket.
+	 * @param filaSeleccionada Parámetro de tipo {@code int}. Se corresponde con Se corersponde con el índice de la fila seleccionada en la tabla 
+	 * que contiene los artículos de un ticket que se ha seleccionado y que, por tanto, se desea eliminar.
+	 * @param modeloTablaTicket Parámetro de tipo {@code modeloTablaTicket}. Se corersponde con el modelo de la tabla
+	 * que contiene los artículos correspondientes a un ticket.
+	 * @param cuadroTextoTotal Parámetro de tipo {@code JTextField}. Se corresponde con el cuadro de texto donde se establece
+	 * la suma de todos los precios de los artículos que permanecen en la tabla de artículos corerspondientes a un ticket.
+	 */
 	public void borrarArticulo(AltaTicket_vista vista, int filaSeleccionada, DefaultTableModel modeloTablaTicket,
 			JTextField cuadroTextoTotal) {
 
@@ -290,6 +391,18 @@ public class Modelo {
 
 	}
 
+	/**
+	 * El método <b>borrarArticulo2()</b> tiene la función de borrar una línea correspondiente a un artículo de la tabla
+	 * que contiene los artículos pertenecientes a un ticket.
+	 * @param vista Parámetro de tipo {@code ModificarTicket2_vista}. Se corresponde con la vista donde se encuentra la tabla
+	 * que contiene los artículos correspondientes aun ticket.
+	 * @param filaSeleccionada Parámetro de tipo {@code int}. Se corresponde con Se corersponde con el índice de la fila seleccionada en la tabla 
+	 * que contiene los artículos de un ticket que se ha seleccionado y que, por tanto, se desea eliminar.
+	 * @param modeloTablaTicket Parámetro de tipo {@code modeloTablaTicket}. Se corersponde con el modelo de la tabla
+	 * que contiene los artículos correspondientes a un ticket.
+	 * @param cuadroTextoTotal Parámetro de tipo {@code JTextField}. Se corresponde con el cuadro de texto donde se establece
+	 * la suma de todos los precios de los artículos que permanecen en la tabla de artículos corerspondientes a un ticket.
+	 */
 	public void borrarArticulo2(ModificarTicket2_vista vista, int filaSeleccionada, 
 			DefaultTableModel modeloTablaTicket, JTextField cuadroTextoTotal) {
 
@@ -301,6 +414,15 @@ public class Modelo {
 
 	}
 
+	/**
+	 * El método <b>sumarColumnaTotalesLinea()</b> tiene la función de calcular la suma de los valores contenidos en
+	 * la columna de una tabla.
+	 * @param numColunmaTotalesLinea Parámetro de tipo {@code int}. Se corresponde con el índice de la columna de la
+	 * cual se quiere calcular la suma de todos su valores.
+	 * @param modeloTablaTicket Parámetro de tipo {@code DefaultTableModel}. Se corresponde con el modelo de la tabla
+	 * que contiene los datos sobre los que se quiere realizar la operación.
+	 * @return suma que es un objeto de tipo {@code BigDecimal} y se corresponde con la suma total de todos los valores de la columna.
+	 */
 	public BigDecimal sumarColumnaTotalesLinea(int numColunmaTotalesLinea, DefaultTableModel modeloTablaTicket) {
 		BigDecimal suma = BigDecimal.ZERO;
 		int numFilas = modeloTablaTicket.getRowCount();
@@ -320,6 +442,13 @@ public class Modelo {
 		return suma;
 	}
 
+	/**
+	 * El método <b>mostrarContenidoTicket()</b> tiene la función de actualizar y mostrar el modelo de tabla de un ticket concreto.
+	 * @param filaSeleccionada Parámetro del tipo {@code int}. Se corresponde con el índice de la fila seleccionada cuyo ticket se desea mostrar.
+	 * @param modeloTablaTicket Parámetro del tipo {@code DefaultTableModel}. Se corresponde con el modelod e tabla que será actualizado con 
+	 * los datos del ticket.
+	 * @param tickets Parámetro de tipo {@code String[]}. Se corresponde con un array de tickets,cada uno representado como un array de cadenas.
+	 */
 	public void mostrarContenidoTicket(int filaSeleccionada, DefaultTableModel modeloTablaTicket, String[]... tickets) {
 
 		modeloTablaTicket.setRowCount(0); 
@@ -354,6 +483,13 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * El método <b>esFechaValida()</b> tiene la función de comprobar que una fecha sigue el formato
+	 * dd/mm/aaa.
+	 * @param fecha Parámetro de tipo {@code String}. Se corresponde con la fecha que hay que validar.
+	 * @return true / false que son valores de tipo {@code boolean} en funciónd e si la fecha tiene o no el formato
+	 * válido.
+	 */
 	public static boolean esFechaValida(String fecha) {
 
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -366,12 +502,27 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * El método <b>escalarImagen</b> tiene la función de redimensionar una imagen representada por un
+	 * {@code ImageIcon} a un nuevo tamaño.
+	 * @param icono Parámetro de tipo {@code ImageIcon}. Se corresponde con el objeto que contiene la imagen que se desea redimensionar.
+	 * @param ancho Parámetro de tipo {@code int}. Se corresponde con el ancho que se le desea dar a la imágen.
+	 * @param alto Parámetro de tipo {@code int}. Se corresponde con el alto que se le desea dar a la imágen.
+	 * @return new ImageIcon(imagenEscalada), que se corresponde con una nueva instancia de ImageIcon pero esta vez a partir de la imagen redimensionada.
+	 */
 	public ImageIcon escalarImagen(ImageIcon icono, int ancho, int alto) {
 		Image imagenOriginal = icono.getImage();
 		Image imagenEscalada = imagenOriginal.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH); 
 		return new ImageIcon(imagenEscalada); 
 	}
 
+	/**
+	 * El método <b>ajustarAnchoColumnas()</b> tiene la función de ajustar el de las columnas de un 
+	 * {@code JTable} según el contenido más largo de cada columna, tomando en cuenta tanto las cabeceras como 
+	 * los valores de las celdas.
+	 * @param tabla Parámetro de tipo {@code JTable }. Se corresponde con la tabla cuyo ancho de columna
+	 * se desea ajustar.
+	 */
 	public void ajustarAnchoColumnas(JTable tabla) {
 		for (int columna = 0; columna < tabla.getColumnCount(); columna++) {
 
@@ -390,6 +541,12 @@ public class Modelo {
 		}
 	}
 
+	/**
+	 * El método <b>String europeoMysql()</b> tiene la función de convertir una fecha en formato europeo
+	 * (dd/mm/aaaa) en formato MySQL (aaaa-mm-dd).
+	 * @param fecha Parámetro de tipo {@code String}. Se corersponde con la fecha que hay que transformar.
+	 * @return fechaTransformada que es un parámetro de tipo {@code String}. Se corresponde con la fecha transformada.
+	 */
 	public static String europeoMysql(String fecha) {
 
 		String fechaTransformada = "";
@@ -398,6 +555,12 @@ public class Modelo {
 		return (fechaTransformada);
 	}
 
+	/**
+	 * El método <b>String mysqlEuropeo()</b> tiene la función de convertir una fecha en formato MySQL (aaaa-mm-dd) 
+	 * en formato europeo (dd/mm/aaaa).
+	 * @param fecha Parámetro de tipo {@code String}. Se corersponde con la fecha que hay que transformar.
+	 * @return fechaTransformada que es un parámetro de tipo {@code String}. Se corresponde con la fecha transformada.
+	 */
 	public static String mysqlEuropeo(String fecha) {
 		String fechaTransformada = "";
 		String[] temporal = fecha.split("-");
@@ -407,6 +570,15 @@ public class Modelo {
 		return (fechaTransformada);
 	}
 	
+	/**
+	 * El método <b>obtenerValoresColumna()</b> tiene la función de obtener los valores de una columna específica
+	 * de un {@code JTable} para devolverlos como un array de cadenas.
+	 * @param tabla Parámetro de tipo {@code JTable}. Se corresponde con la tabla de la cual se extraerán los valores.
+	 * @param numColumna Parámetro de tipo {@code in}. Se corresponde con el índice de la columna de la tabla del que se extraerán
+	 * los valores.
+	 * @return valores que es un objeto de tipo {@code String[]} y se corresponde con un array que contiene los valores de la columna
+	 * seleccionada.
+	 */
 	public static String[] obtenerValoresColumna(JTable tabla, int numColumna) {
 	    int numFilas = tabla.getRowCount();
 	    String[] valores = new String[numFilas]; 
@@ -419,6 +591,13 @@ public class Modelo {
 	    return valores; 
 	}
 	
+	/**
+	 * El método <b>obtenerValorIdTicketSeleccionado</b> tiene la función de obtener el valor de la primera columna
+	 * de la fila seleccionada de una tabla, el cuals e corresponde con el identificador de un ticket.
+	 * @param tabla Parámetro de tipo {@code JTable}. Se corresponde con la tabla de la cual se obtendrá el valor.
+	 * @return tabla.getModel().getValueAt(filaSeleccionada, 0).toString(), que se corresponde con el valor de la 
+	 * primera columna de la fila seleccionada. Devolverá {@code null} si nos e ha seleccionado ninguna fila.
+	 */
 	public static String obtenerValorIdTicketSeleccionado(JTable tabla) {
 	    int filaSeleccionada = tabla.getSelectedRow(); 
 	    if (filaSeleccionada != -1) { 
@@ -427,6 +606,24 @@ public class Modelo {
 	    return null; 
 	}
 	
+	/**
+	 * El método <b>addArticuloActualizarTicket</b> tiene la función de añadir un artículo a la tabla que contiene los artículos 
+	 * correspondientes a un ticket en la ventana 'Modificar tickets'. Muestra un diálogo para que el usuario introduzca
+	 * la cantidad de dicho artículo que quiere incluir en el ticket.  A continuación, calcula la suma de los precios
+	 * de todos los artículos presentes en el ticket y los agrega al modelo de la tabla.
+	 * @param vista Parámetro tipo {@code ModificarTicket2_vista}. Se corresponde conn la vista donde se encuentra la
+	 * tabla donde se encuentran lso artículos que pueden ser añadidos al ticket.
+	 * @param filaSeleccionada Parámetro de tipo {@code int}. Se corresponde con la fila seleccionada de la tabla en la cual
+	 * se encuentra la información del artículo que se pretende añadir al ticket.
+	 * @param tablaArticulos Parámetro de tipo {@code JTable}. Se correspon decon la tabla que contiene los artículos que pueden ser 
+	 * añadidos a un ticket.
+	 * @param modeloTablaTicket Parámetro de tipo {@code DefaultTableModel}. Se corresponde con el modelo de la tabla donde
+	 * se encuentran los artículos correspondientes a un ticket concreto.
+	 * @param cuadroTextoTotal Parámetro de tipo {@code JTextField}. Se corresponde con el cuadro de texto donde se establece
+	 * la suma de todos los precios de los artículos correspondientes a un ticket concreto.
+	 * @return modeloTablaTicket el cual es un objeto de tipo {@code DefaultTableModel}. Se corresponde con el modelo actualizado de 
+	 * la tabla que contiene los artículos correspondientes a un ticket concreto.
+	 */
 	public DefaultTableModel addArticuloActualizarTicket(ModificarTicket2_vista vista, int filaSeleccionada,
 			JTable tablaArticulos, DefaultTableModel modeloTablaTicket, JTextField cuadroTextoTotal) {
 		String articuloAAnadir = "";
@@ -467,6 +664,13 @@ public class Modelo {
 		return modeloTablaTicket;
 	}
 
+	/**
+	 * El método <b>mostrarDialogoActualizarTickets</b> tiene como función mostrar un diálogo para que el usuario ingrese la cantidad de unidades de un artículo
+     * que desea agregar a un ticket ticket.
+	 * @param vista Parámetro de tipo {@code ModificarTicket2_vista}. Se corresponde con la vista donde se mostrará el diálogo.
+	 * @param articulo Parámetro de tipo {@code String}. Se corresponde con el nombre del artículo del cuál se solicita la cantidad.
+	 * @return numUnidades que es una variable de tipo {@code int}. Se corresponde con el número de unidades del artículo que ha introducido el usuario.
+	 */
 	public int mostrarDialogoActualizarTickets(ModificarTicket2_vista vista, String articulo) {
 		final int[] numUnidades = { 1 };
 

@@ -14,6 +14,12 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import java.awt.Color;
 
+/**
+ * La clase <b>MenuPrincipal_vista</b> contiene los componentes gráficos del menú principal
+ * de la aplicación.
+ * @author Javier Pueyo
+ * @version 2.0
+ */
 public class MenuPrincipal_vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;

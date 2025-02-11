@@ -13,6 +13,12 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 
+/**
+ * La clase <b>ConsultarArticulo2_vista</b> contiene los componentes gráficos de la ventana 
+ * 'Consultar Artículo'.
+ * @author Javier Pueyo
+ * @version 2.0
+ */
 public class ConsultarArticulo2_vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;

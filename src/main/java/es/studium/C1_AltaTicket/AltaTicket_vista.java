@@ -17,6 +17,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+/**
+ * La clase <b>AltaTicket_vista</b> contiene los componentes gráficos de la ventana 
+ * 'Crear Ticket'.
+ * @author Javier Pueyo
+ * @version 2.0
+ */
 public class AltaTicket_vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;

@@ -16,6 +16,11 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 
+/**
+ * La clase <b>ConsultarArticulo1_vista</b> contiene los componentes gráficos de la ventana 'Consultar Artículos - Selección'.
+ * @author Javier Pueyo
+ * @version 2.0
+ */
 public class ConsultarArticulo1_vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;

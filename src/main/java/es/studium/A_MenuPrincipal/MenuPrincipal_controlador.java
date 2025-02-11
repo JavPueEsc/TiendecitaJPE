@@ -34,6 +34,14 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
+/**
+ * La clase <b>MenuPrincipal_controlador</b> gestiona la interacción entre la clase
+ * <b>MenuPrincipal_vista</b> y la clase <b>Modelo</b>. Permite manejar los eventos que suceden
+ * en el menú principal de la aplicación, permitiendo la navegación entre las diferentes funcionalidades
+ * como la gestión de artículos, la gestión de tickets o la gestión de informes.
+ * @author Javier Pueyo
+ * @version 2.0
+ */
 public class MenuPrincipal_controlador implements ActionListener{
 	
 	MenuPrincipal_vista vista;

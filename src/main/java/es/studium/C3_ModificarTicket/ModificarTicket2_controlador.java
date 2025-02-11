@@ -9,6 +9,13 @@ import javax.swing.table.DefaultTableModel;
 import es.studium.Z_Modelos.Modelo;
 import es.studium.Z_Modelos.ModeloMetodosBD;
 
+/**
+ * La clase <b>ModificarTicket2_controlador</b> gestiona la interacción entre la clase
+ * <b>ModificarTicket2_vista</b> y la clase <b>Modelo</b>. Permite manejar los eventos que suceden
+ * en la ventana 'Modificar Ticket'.
+ * @author Javier Pueyo
+ * @version 2.0
+ */
 public class ModificarTicket2_controlador implements ActionListener {
 
 	public ModificarTicket2_vista vista;

@@ -5,6 +5,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import es.studium.Z_Modelos.Modelo;
 
+/**
+ * La clase <b>ConsultarArticulo2_controlador</b> gestiona la interacción entre la clase
+ * <b>ConsultarArticulo2_vista</b> y la clase <b>Modelo</b>. Permite manejar los eventos que suceden
+ * en la ventana 'Consultar Artículo'.
+ * @author Javier Pueyo
+ * @version 2.0
+ */
 public class ConsultarArticulo2_controlador implements ActionListener {
 
 	ConsultarArticulo2_vista vista;

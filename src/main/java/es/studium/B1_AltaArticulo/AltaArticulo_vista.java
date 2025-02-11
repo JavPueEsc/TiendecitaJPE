@@ -13,6 +13,11 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 
+/**
+ * La clase <b>AltaArticulo_vista</b> contiene los componentes gráficos de la ventana 'Crear Artículos'.
+ * @author Javier Pueyo
+ * @version 2.0
+ */
 public class AltaArticulo_vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -27,9 +32,6 @@ public class AltaArticulo_vista extends JFrame {
 	public JButton btnLimpiar;
 	public JButton btnVolver;
 
-	/**
-	 * Create the frame.
-	 */
 	public AltaArticulo_vista() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\dekad\\Desktop\\GrupoStudium\\3. Segundo DAM\\4. Desarrollo de interfaces\\workspace DI\\DIT2_PracticaT2\\imagenes\\Icono_Frame.png"));
 		setTitle("Crear Artículos");
